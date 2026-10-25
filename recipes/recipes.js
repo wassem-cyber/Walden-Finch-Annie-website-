@@ -1,5 +1,71 @@
 var SEED=[
  {
+  "id": "r_eggplant_parmesan",
+  "title": "Eggplant Parmesan",
+  "servings": 8,
+  "tags": [
+   "vegetarian",
+   "gluten free",
+   "freezer friendly"
+  ],
+  "ing": [
+   {
+    "q": null,
+    "t": "Olive oil spray"
+   },
+   {
+    "q": 2,
+    "t": "pounds eggplant (1 large or 2 medium), peeled"
+   },
+   {
+    "q": 1,
+    "t": "teaspoon kosher salt"
+   },
+   {
+    "q": 12,
+    "t": "ounces part-skim ricotta cheese (I like Polly-O)"
+   },
+   {
+    "q": 1,
+    "t": "large egg, lightly beaten"
+   },
+   {
+    "q": 0.25,
+    "t": "cup fresh parsley, chopped"
+   },
+   {
+    "q": 6,
+    "t": "tbsp freshly grated Pecorino Romano cheese (1/4 cup plus 2 tbsp)"
+   },
+   {
+    "q": 4,
+    "t": "cups Basil Pomodoro Sauce or store-bought marinara sauce"
+   },
+   {
+    "q": 2.5,
+    "t": "cups part-skim shredded mozzarella cheese"
+   }
+  ],
+  "steps": [
+   "Preheat the oven to 450°F. Spray two sheet pans with oil.",
+   "Slice the eggplant into 1/4-inch-thick rounds. Transfer them to the prepared pans (it's OK if they overlap slightly). Season both sides with salt. Bake for about 20 minutes, turning halfway through, until the eggplant is golden.",
+   "Meanwhile, in a medium bowl, combine the ricotta, egg, parsley, and 1/4 cup Pecorino.",
+   "When the eggplant has finished baking, put 1/2 cup sauce on the bottom of a 9 × 12-inch baking dish and add one-third of the eggplant to cover the bottom of the dish. Top with a third of the ricotta mixture, 3/4 cup mozzarella, and 3/4 cup sauce. Add another layer of eggplant and repeat the layers of ricotta, mozzarella, and sauce two more times. Finish with the remaining sauce, remaining mozzarella, and remaining 2 tablespoons Pecorino. Cover the pan tightly with foil until ready to bake.",
+   "Serve Now: Preheat the oven to 400°F. Bake, covered, for 40 to 45 minutes. Uncover and bake for about 10 minutes more to help thicken the sauce. Remove from the oven and let it rest for 10 minutes before serving.",
+   "Refrigerate and Serve Later: You can prep this dish 24 hours before baking. Tightly wrap before refrigerating.",
+   "Freeze and Serve Later: Prepare the unbaked Eggplant Parmesan in a freezer-to-ovenproof baking dish or foil dish. Cover tightly and freeze. There is no need to thaw: bake from frozen in a preheated oven at 350°F for 2 1/4 to 2 1/2 hours, until heated through in the center. Uncover and bake for 10 to 15 minutes more. Remove from the oven and let rest for 15 minutes before serving.",
+   "Meal Prep: Cut slices of the cooked eggplant Parmesan into individual servings and store in the refrigerator in meal prep containers. Reheat in the microwave or in the oven for lunches and dinners."
+  ],
+  "storage": "Fridge up to 4 days; freezer up to 3 months (unbaked)",
+  "nut": {
+   "cal": "266",
+   "pro": "20",
+   "carb": "20",
+   "fat": "13.5"
+  },
+  "ts": 1792949381549
+ },
+ {
   "id": "r1792939358512",
   "img": "img/buffalo-chicken-stuffed-celery-sticks.jpg",
   "ing": [
