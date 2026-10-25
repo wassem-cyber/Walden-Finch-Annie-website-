@@ -1,5 +1,74 @@
 var SEED=[
  {
+  "id": "r_breakfast_quesadillas",
+  "title": "Breakfast Quesadillas",
+  "servings": 4,
+  "tags": [
+   "quick",
+   "vegetarian",
+   "gluten free"
+  ],
+  "img": "img/breakfast-quesadillas.jpg",
+  "ing": [
+   {
+    "q": 6,
+    "t": "large eggs, beaten"
+   },
+   {
+    "q": 1,
+    "t": "(4-ounce) can diced green chiles, drained"
+   },
+   {
+    "q": 0.25,
+    "t": "teaspoon kosher salt"
+   },
+   {
+    "q": null,
+    "t": "Olive oil spray"
+   },
+   {
+    "q": 4,
+    "t": "large (8-inch) low-carb whole wheat or gluten-free tortillas"
+   },
+   {
+    "q": 1.33,
+    "t": "cups shredded reduced-fat cheddar or Mexican blend cheese*"
+   },
+   {
+    "q": 0.25,
+    "t": "cup chopped fresh cilantro"
+   },
+   {
+    "q": 0.25,
+    "t": "cup chopped red onion"
+   },
+   {
+    "q": 1,
+    "t": "cup jarred or homemade salsa, for serving"
+   },
+   {
+    "q": 1,
+    "t": "small (4-ounce) avocado, cut into 4 wedges, for serving"
+   }
+  ],
+  "steps": [
+   "In a medium bowl, whisk the eggs, chiles, and salt.",
+   "Heat a large nonstick skillet over medium heat, spray with olive oil, and add the eggs. Let the eggs set on the bottom, then stir a few times until scrambled and cooked through, about 3 minutes. Transfer to a plate and set aside. Wipe the skillet clean.",
+   "Reheat the skillet over medium-high heat and spray with oil once it is really hot. Place a tortilla in the skillet and mound 1/3 cup cheese on the lower half, leaving about 1 inch around the edge. Top with one-fourth of the eggs, cilantro, and red onion, then fold in half. Cook until the cheese is melted through and the tortilla is golden on the bottom, 2 to 3 minutes. Set aside and repeat with the remaining 3 tortillas. Cut each into wedges. Serve hot with salsa and avocado.",
+   "Meal Prep: Place the quesadillas and salsa into separate airtight containers and store in the fridge. When ready to eat, serve at room temperature or reheat (see Skinny Scoop). Add the avocado the morning you plan on eating the quesadillas to avoid browning.",
+   "Skinny Scoop: Don't reheat the quesadillas in the microwave, or they'll get soggy. Eat them at room temperature if packed to go, or reheat them in a skillet or air fryer. For avocado in meal prep, cut it the morning you're going to eat it and wrap the rest tightly with plastic wrap. A squeeze of lime juice helps prevent browning.",
+   "*Gluten free: read the label to be sure the cheese is gluten-free, and use gluten-free tortillas."
+  ],
+  "storage": "Fridge up to 5 days",
+  "nut": {
+   "cal": "337",
+   "pro": "25",
+   "carb": "26",
+   "fat": "21"
+  },
+  "ts": 1792951659248
+ },
+ {
   "id": "r_stuffed_chicken_parmesan",
   "title": "Stuffed Chicken Parmesan and Asparagus",
   "servings": 4,
