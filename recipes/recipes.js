@@ -1,5 +1,58 @@
 var SEED=[
  {
+  "id": "r_smashed_broccoli_farro_bowls",
+  "title": "Smashed Broccoli Pecorino Farro Bowls",
+  "servings": 4,
+  "tags": [
+   "quick",
+   "vegetarian"
+  ],
+  "ing": [
+   {
+    "q": null,
+    "t": "Kosher salt"
+   },
+   {
+    "q": 1.5,
+    "t": "cups pearled farro"
+   },
+   {
+    "q": 1.25,
+    "t": "pounds broccoli florets"
+   },
+   {
+    "q": 2,
+    "t": "tablespoons olive oil"
+   },
+   {
+    "q": 4,
+    "t": "garlic cloves, crushed with the side of a knife and then roughly chopped"
+   },
+   {
+    "q": 0.125,
+    "t": "teaspoon crushed red pepper flakes, plus more for serving, to taste (optional)"
+   },
+   {
+    "q": 0.25,
+    "t": "cup freshly grated Pecorino Romano cheese, plus more for serving (optional)"
+   }
+  ],
+  "steps": [
+   "Bring a large pot of salted water to boil over high heat. Once boiling, add the farro and cook for about 6 minutes, then add the broccoli and cook for about 6 minutes more, until the broccoli and farro are tender and cooked through. Drain in a colander, reserving 1/4 cup liquid.",
+   "Heat 1 tablespoon olive oil in the pot over medium-high heat. Add the garlic and pepper flakes and cook for about 1 minute, stirring until golden. Add the cooked broccoli and farro, season with 1/2 teaspoon salt, and cook, stirring frequently, for 1 to 2 minutes more, roughly smashing any large chunks of broccoli with a wooden spoon. Add a little of the reserved liquid if it's too dry. Stir in the remaining olive oil and the Pecorino.",
+   "Serve Now: Serve warm or at room temperature with more grated cheese and crushed red pepper flakes (if using).",
+   "Meal Prep: Divide among 4 meal prep containers. Reheat in the microwave for 2 to 3 minutes or on the stove with a little water for 3 to 5 minutes."
+  ],
+  "storage": "Fridge up to 4 days",
+  "nut": {
+   "cal": "395",
+   "pro": "17",
+   "carb": "63",
+   "fat": "10.5"
+  },
+  "ts": 1792950353322
+ },
+ {
   "id": "r_breakfast_on_the_run_bowls",
   "title": "Breakfast-on-the-Run Bowls",
   "servings": 2,
