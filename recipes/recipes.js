@@ -1,5 +1,94 @@
 var SEED=[
  {
+  "id": "r_spicy_salmon_poke_bowls",
+  "title": "Spicy Salmon Poke Bowls",
+  "servings": 4,
+  "tags": [
+   "quick",
+   "gluten free",
+   "dairy free"
+  ],
+  "img": "img/spicy-salmon-poke-bowls.jpg",
+  "ing": [
+   {
+    "q": 0.25,
+    "t": "cup light mayonnaise (spicy mayo)"
+   },
+   {
+    "q": 1.5,
+    "t": "tablespoons Sriracha sauce (spicy mayo)"
+   },
+   {
+    "q": 1.5,
+    "t": "pounds leftover Sheet Pan Herb Salmon, cold"
+   },
+   {
+    "q": 4,
+    "t": "tablespoons reduced-sodium soy sauce* or gluten-free tamari"
+   },
+   {
+    "q": 2,
+    "t": "teaspoons toasted sesame oil"
+   },
+   {
+    "q": 1,
+    "t": "teaspoon Sriracha sauce"
+   },
+   {
+    "q": 2,
+    "t": "cups cooked rice (short-grain brown, sushi white, or black forbidden rice)"
+   },
+   {
+    "q": 1,
+    "t": "medium (5-ounce) Hass avocado, diced into 1/2-inch cubes"
+   },
+   {
+    "q": 4,
+    "t": "Persian cucumbers, diced"
+   },
+   {
+    "q": 0.5,
+    "t": "cup shredded red cabbage"
+   },
+   {
+    "q": null,
+    "t": "Jarred pickled ginger (optional)"
+   },
+   {
+    "q": 2,
+    "t": "scallions, green parts only, sliced for garnish"
+   },
+   {
+    "q": 1,
+    "t": "tablespoon furikake or black sesame seeds"
+   },
+   {
+    "q": null,
+    "t": "Reduced-sodium soy sauce* or gluten-free tamari, for serving (optional)"
+   },
+   {
+    "q": null,
+    "t": "Sriracha sauce, for serving (optional)"
+   }
+  ],
+  "steps": [
+   "Uses leftover salmon from the Sheet Pan Herb Salmon with Broccolini and Tomatoes recipe (its Big Batch fillet).",
+   "In a small bowl, combine the mayonnaise and Sriracha and thin with 1 tablespoon water to drizzle.",
+   "Flake or cut the cold salmon into large chunks. Drizzle with the soy sauce, sesame oil, and Sriracha and gently toss to combine. Set aside while you prepare the bowls.",
+   "Place 1/2 cup rice in each of 4 shallow bowls. In each bowl, arrange 6 ounces salmon, one-fourth of the diced cucumber and avocado, 2 tablespoons of the red cabbage, some pickled ginger (if using), and one-fourth of the scallion greens.",
+   "Drizzle with the spicy mayo, then top with the furikake and serve with extra soy sauce and Sriracha on the side (if using).",
+   "*Gluten free: read the label to be sure the soy sauce is gluten-free."
+  ],
+  "storage": "Fridge up to 2 days",
+  "nut": {
+   "cal": "513",
+   "pro": "37",
+   "carb": "34",
+   "fat": "25"
+  },
+  "ts": 1792950955345
+ },
+ {
   "id": "r_sheet_pan_herb_salmon",
   "title": "Sheet Pan Herb Salmon with Broccolini and Tomatoes",
   "servings": 4,
