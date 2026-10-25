@@ -6,6 +6,10 @@ const json = (body, status = 200) =>
 
 export default async (req) => {
   const code = new URL(req.url).searchParams.get("code") || "";
+  if (code === "ping") {
+    await getStore({ name: "recipe-box", consistency: "strong" }).get("ping");
+    return json('{"ok":true}');
+  }
   if (!/^[a-z0-9]{10,40}$/.test(code)) return json('{"error":"bad code"}', 400);
   const store = getStore({ name: "recipe-box", consistency: "strong" });
 
