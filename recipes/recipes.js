@@ -1,5 +1,83 @@
 var SEED=[
  {
+  "id": "r_sheet_pan_herb_salmon",
+  "title": "Sheet Pan Herb Salmon with Broccolini and Tomatoes",
+  "servings": 4,
+  "tags": [
+   "quick",
+   "gluten free",
+   "dairy free"
+  ],
+  "img": "img/sheet-pan-herb-salmon.jpg",
+  "ing": [
+   {
+    "q": null,
+    "t": "Olive oil spray"
+   },
+   {
+    "q": 2,
+    "t": "lemons"
+   },
+   {
+    "q": 10,
+    "t": "sprigs of fresh parsley"
+   },
+   {
+    "q": 8,
+    "t": "tsp extra-virgin olive oil (2 tbsp plus 2 tsp)"
+   },
+   {
+    "q": 2,
+    "t": "(1 1/2-pound) fillets wild salmon, skin on (1 to 1 1/2 inches thick)"
+   },
+   {
+    "q": 1,
+    "t": "teaspoon kosher salt"
+   },
+   {
+    "q": null,
+    "t": "Freshly ground black pepper"
+   },
+   {
+    "q": 12,
+    "t": "ounces broccolini (12 spears), ends trimmed (from 2 to 3 bunches)"
+   },
+   {
+    "q": 1.5,
+    "t": "cups grape tomatoes, halved"
+   },
+   {
+    "q": 2,
+    "t": "tablespoons chopped fresh dill"
+   },
+   {
+    "q": 1,
+    "t": "tablespoon chopped fresh chives"
+   },
+   {
+    "q": 1,
+    "t": "tablespoon chopped fresh parsley"
+   }
+  ],
+  "steps": [
+   "Serves 4 for 2 meals: cook both fillets, serve one now and save the second for later (see Big Batch).",
+   "Position two oven racks in the center and top third of the oven. Preheat the oven to 350°F. Spray 2 large sheet pans with olive oil.",
+   "Slice one lemon into thin rounds and cut the second lemon into wedges for serving later. Place the lemon slices on one of the large sheet pans arranged in two areas where you will place the fish on top. Top the lemon slices with parsley and drizzle with 1 teaspoon olive oil. Transfer the salmon to the pan over the lemon slices, skin side down. Drizzle 1 teaspoon olive oil over the flesh side of the fish and rub all over, and season with 1/2 teaspoon salt and pepper to taste.",
+   "On the second sheet pan, place the broccolini and tomatoes and toss with 2 tablespoons olive oil, 1/2 teaspoon salt, and pepper to taste. Spread out in an even layer.",
+   "Roast the salmon on the center rack and the vegetables on the upper rack, cooking until the salmon is just barely opaque in the middle, about 20 minutes depending on the thickness of the fish. If you like the fish more well done, cook for about 5 minutes more. Toss the vegetables halfway through.",
+   "When the salmon is cooked, remove from the oven, top each piece with the fresh herbs, and serve with broccolini, tomatoes, and lemon wedges.",
+   "Big Batch: Let the second piece cool, then cover and refrigerate for up to 2 days. Use it as planned-overs in Spicy Salmon Poke Bowls, Salmon Fried Rice, or Salmon Niçoise Salad, or in any salad or grain bowl."
+  ],
+  "storage": "Fridge up to 2 days",
+  "nut": {
+   "cal": "370",
+   "pro": "38",
+   "carb": "11",
+   "fat": "19.5"
+  },
+  "ts": 1792950711044
+ },
+ {
   "id": "r_smashed_broccoli_farro_bowls",
   "title": "Smashed Broccoli Pecorino Farro Bowls",
   "servings": 4,
