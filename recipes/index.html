@@ -77,7 +77,7 @@ function keep(){document.getElementById("l").innerHTML=items()}
 function nutHtml(n){if(!n)return"";var p=[];if(n.cal)p.push(n.cal+" kcal");if(n.pro)p.push(n.pro+" g protein");if(n.carb)p.push(n.carb+" g carbs");if(n.fat)p.push(n.fat+" g fat");return p.length?'<div class="nut"><b>Nutrition per serving</b><br>'+p.join(", ")+'</div>':""}
 function detail(){var r=rec(cur);if(!r){view="list";return list()}
 var n=Math.max(1,Math.round(r.servings*scale)),on=S.plan.indexOf(r.id)>-1;
-var ing=r.ing.map(function(i,k){var t=(i.q!==null?fmt(i.q*scale)+" ":"")+i.t;return'<li><label><input type="checkbox" '+(checked[k]?"checked":"")+' onchange="checked['+k+']=this.checked;this.nextElementSibling.className=this.checked?\'done\':\'\'"><span class="'+(checked[k]?"done":"")+'">'+esc(t)+'</span></label></li>'}).join("");
+var ing=r.ing.map(function(i,k){var t=(i.q!==null?fq(i.q*scale,1)+" ":"")+i.t;return'<li><label><input type="checkbox" '+(checked[k]?"checked":"")+' onchange="checked['+k+']=this.checked;this.nextElementSibling.className=this.checked?\'done\':\'\'"><span class="'+(checked[k]?"done":"")+'">'+esc(t)+'</span></label></li>'}).join("");
 var st=r.steps.map(function(s){return"<p>"+esc(s)+"</p>"}).join("");
 return'<div class="row" style="justify-content:space-between"><button class="ghost" onclick="go(\'list\')">Back to recipes</button><button class="ghost" onclick="go(&quot;edit&quot;,cur)">Edit recipe</button></div>'+(r.img?'<img class="hero" src="'+r.img+'" alt="">':"")+'<h1>'+esc(r.title)+'</h1>'+(r.tags.length?'<div class="mute">'+esc(r.tags.join(", "))+'</div>':"")+nutHtml(r.nut)+(r.storage?'<div class="nut"><b>Storage</b><br>'+esc(r.storage)+'</div>':"")+'<p><button class="pill" aria-pressed="'+on+'" onclick="tw(\''+r.id+'\')">'+(on?"In this week":"Add to week")+'</button></p><div class="row"><button class="step" aria-label="Fewer servings" onclick="sv(-1)">−</button><b>Serves '+n+'</b><button class="step" aria-label="More servings" onclick="sv(1)">+</button></div><h2>Ingredients</h2><ul class="ing">'+ing+'</ul><h2>Method</h2><div class="method">'+st+'</div><button class="ghost" onclick="del()">Delete recipe</button>'}
 function sv(d){var r=rec(cur),n=Math.max(1,Math.round(r.servings*scale)+d);scale=n/r.servings;draw()}
@@ -88,8 +88,8 @@ var UI={tsp:["tsp","usv",1],teaspoon:["tsp","usv",1],teaspoons:["tsp","usv",1],t
 UPL={tsp:"tsp",tbsp:"tbsp",cup:"cups",ml:"ml",l:"l",g:"g",kg:"kg",oz:"oz",lb:"lb"};
 ["can","clove","pinch","bunch","slice","package","stick","head","sprig","dash","piece"].forEach(function(u){var p=/(ch|sh)$/.test(u)?u+"es":u+"s";UI[u]=[u,u,1];UI[p]=[u,u,1];UPL[u]=p});
 function sing(s){var w=s.split(" "),l=w.pop();l=/ies$/.test(l)?l.replace(/ies$/,"y"):/(oes|ches|shes|xes|sses)$/.test(l)?l.replace(/es$/,""):/[^su]s$/.test(l)?l.slice(0,-1):l;w.push(l);return w.join(" ")}
-function fq(n){var w=Math.floor(n+1e-9),f=n-w,F=[[0,""],[.125,"1/8"],[.25,"1/4"],[1/3,"1/3"],[.375,"3/8"],[.5,"1/2"],[.625,"5/8"],[2/3,"2/3"],[.75,"3/4"],[.875,"7/8"],[1,"1"]];
-for(var k=0;k<F.length;k++){if(Math.abs(f-F[k][0])<.02){if(F[k][0]===1){w++;return String(w)}var s=F[k][1];return w&&s?w+" "+s:w?String(w):s}}return fmt(n)}
+function fq(n,near){var w=Math.floor(n+1e-9),f=n-w,F=[[0,""],[.125,"1/8"],[.25,"1/4"],[1/3,"1/3"],[.375,"3/8"],[.5,"1/2"],[.625,"5/8"],[2/3,"2/3"],[.75,"3/4"],[.875,"7/8"],[1,"1"]];
+for(var k=0;k<F.length;k++){if(Math.abs(f-F[k][0])<.02){if(F[k][0]===1){w++;return String(w)}var s=F[k][1];return w&&s?w+" "+s:w?String(w):s}}if(!near||n<.1)return fmt(n);var bk=F[0];F.forEach(function(x){if(Math.abs(f-x[0])<Math.abs(f-bk[0]))bk=x});return fq(w+bk[0])}
 function norm(i){var sg=String(i.t||"").replace(/\([^)]*\)/g,"").split(","),t=sg[0].trim();while(sg.length>1&&/(^|\s)(boneless|skinless|bone-in|skin-on)$/i.test(t)){sg.shift();t=t+" "+sg[0].trim()}var q=i.q,u=null;
 if(q!==null){var m=t.match(/^([a-zA-Z]+)\.?\s+(?:of\s+)?(.+)$/);if(m&&UI[m[1].toLowerCase()]){u=UI[m[1].toLowerCase()];t=m[2]}else{var c=t.match(/^(.+?)\s+(cloves?)$/i);if(c){u=UI.clove;t=c[1]}}}
 var nm=t.toLowerCase().replace(/^((large|medium|small|big|fresh|ripe)\s+)+/,"").trim()||String(i.t||"").toLowerCase();
@@ -102,7 +102,7 @@ if(n.q!==null){var fk=n.u?n.u[1]:"",x=n.u?n.u[2]:1,un=n.u?n.u[0]:"";if(!e.fam[fk
 var rows=o.map(function(k){var e=m[k],parts=[],nm=e.first;
 e.fo.forEach(function(fk){var f=e.fam[fk],us=Object.keys(f.units).sort(function(a,b){return f.units[b]-f.units[a]}),u=us[us.length-1];
 for(var j=0;j<us.length;j++){if(f.tot/f.units[us[j]]>=.999){u=us[j];break}}
-var v=f.tot/f.units[u];parts.push(fq(v)+(u?" "+(v>1.001?UPL[u]:u):""))});
+var v=f.tot/f.units[u];parts.push(fq(v,1)+(u?" "+(v>1.001?UPL[u]:u):""))});
 if(e.fo.length===1&&e.fo[0]===""){nm=e.fam[""].tot>1.001?(e.pl||e.sg):(e.sg||e.pl)}
 return{k:k,t:(parts.length?parts.join(" + ")+" ":"")+nm,s:nm.toLowerCase()}});
 rows.sort(function(a,b){return a.s<b.s?-1:a.s>b.s?1:0});
@@ -120,7 +120,7 @@ function fill(){var r=rec(cur);if(!r){go("list");return}
 var v=function(id,x){document.getElementById(id).value=x==null?"":x},n=r.nut||{};
 document.querySelector("#app h1").textContent="Edit recipe";
 v("t",r.title);v("s",r.servings);v("g",r.tags.join(", "));
-v("i",r.ing.map(function(i){return(i.q!==null?fmt(i.q)+" ":"")+i.t}).join("\n"));
+v("i",r.ing.map(function(i){return(i.q!==null?fq(i.q)+" ":"")+i.t}).join("\n"));
 v("m",r.steps.join("\n"));v("nc",n.cal);v("np",n.pro);v("nb",n.carb);v("nf",n.fat);v("st",r.storage);
 img=r.img||"";if(img){var pv=document.getElementById("pv");pv.src=img;pv.hidden=false}}
 var DK="recipe-box-draft",dt=null,DF=["t","s","g","i","m","nc","np","nb","nf","st"];
