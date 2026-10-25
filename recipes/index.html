@@ -38,7 +38,10 @@ label{display:block;margin:14px 0 4px;font-weight:600}
 .chip{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:4px 12px;cursor:pointer;font-size:.9rem}
 .chip[aria-pressed=true]{background:var(--acc);color:var(--on);border-color:var(--acc)}
 .item{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px;margin-top:10px}
-.item img{width:60px;height:60px;object-fit:cover;border-radius:6px}
+.item img{width:96px;height:96px;flex:none;object-fit:cover;border-radius:10px}
+.badges{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.badge{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:24px;padding:0 5px;border-radius:6px;color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.02em}
+.tagx{display:inline-flex;align-items:center;height:24px;padding:0 8px;border:1px solid var(--line);border-radius:6px;font-size:.75rem;color:var(--mute)}
 .open{flex:1;text-align:left;background:none;border:0;padding:4px;cursor:pointer;min-width:0}
 .open b{display:block;font-size:1.05rem}
 .pill{border:1px solid var(--acc);background:none;color:var(--acc);border-radius:99px;padding:6px 12px;font-size:.85rem;cursor:pointer;white-space:nowrap}
@@ -85,7 +88,9 @@ function list(){var tags=[];S.R.forEach(function(r){r.tags.forEach(function(t){i
 var ch=tags.length?'<div class="chips">'+tags.map(function(t){return'<button class="chip" aria-pressed="'+(tg===t)+'" onclick="tg=tg===\''+esc(t)+'\'?\'\':\''+esc(t)+'\';draw()">'+esc(t)+'</button>'}).join("")+'</div>':"";
 return nav()+'<h1>Recipe Box</h1><div class="stack"><input id="q" type="search" placeholder="Search recipes" aria-label="Search recipes" value="'+esc(q)+'" oninput="q=this.value;keep()"><button class="btn wide" onclick="go(\'new\')">Add recipe</button></div>'+ch+'<div id="l">'+items()+'</div><p class="mute">Saved on this device. Open the menu (&#9776;) at the top right to sync with your other devices, or to import or export recipes.</p>'}
 function items(){var f=S.R.filter(match);if(!f.length)return'<p class="mute">'+(q||tg?"No recipes match.":"No recipes yet. Add your first one.")+'</p>';
-return f.map(function(r){var on=S.plan.indexOf(r.id)>-1;return'<div class="item">'+(r.img?'<img src="'+r.img+'" alt="">':"")+'<button class="open" onclick="go(\'view\',\''+r.id+'\')"><b>'+esc(r.title)+'</b><span class="mute">Serves '+r.servings+(r.tags.length?", "+esc(r.tags.join(", ")):"")+'</span></button><button class="pill" aria-pressed="'+on+'" onclick="tw(\''+r.id+'\')">'+(on?"In this week":"Add to week")+'</button></div>'}).join("")}
+return f.map(function(r){var on=S.plan.indexOf(r.id)>-1;return'<div class="item">'+(r.img?'<img src="'+r.img+'" alt="">':"")+'<button class="open" onclick="go(\'view\',\''+r.id+'\')"><b>'+esc(r.title)+'</b>'+badges(r.tags)+'</button><button class="pill" aria-pressed="'+on+'" onclick="tw(\''+r.id+'\')">'+(on?"In this week":"Add to week")+'</button></div>'}).join("")}
+var BADGE={"quick":["Q","#d39a2c"],"vegetarian":["V","#1e6b5c"],"gluten free":["GF","#e2554f"],"dairy free":["DF","#5a3f78"],"freezer friendly":["FF","#3a8fc4"],"instant pot":["IP","#9a9a1f"],"slow cooker":["SC","#26408b"],"air fryer":["AF","#b04aa8"]};
+function badges(tags){if(!tags.length)return"";return'<span class="badges">'+tags.map(function(t){var b=BADGE[t];return b?'<span class="badge" style="background:'+b[1]+'" title="'+esc(t)+'" aria-label="'+esc(t)+'">'+b[0]+'</span>':'<span class="tagx">'+esc(t)+'</span>'}).join("")+'</span>'}
 function keep(){document.getElementById("l").innerHTML=items()}
 function nutHtml(n){if(!n)return"";var p=[];if(n.cal)p.push(n.cal+" kcal");if(n.pro)p.push(n.pro+" g protein");if(n.carb)p.push(n.carb+" g carbs");if(n.fat)p.push(n.fat+" g fat");return p.length?'<div class="nut"><b>Nutrition per serving</b><br>'+p.join(", ")+'</div>':""}
 function detail(){var r=rec(cur);if(!r){view="list";return list()}
