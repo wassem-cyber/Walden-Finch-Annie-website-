@@ -90,7 +90,7 @@ UPL={tsp:"tsp",tbsp:"tbsp",cup:"cups",ml:"ml",l:"l",g:"g",kg:"kg",oz:"oz",lb:"lb
 function sing(s){var w=s.split(" "),l=w.pop();l=/ies$/.test(l)?l.replace(/ies$/,"y"):/(oes|ches|shes|xes|sses)$/.test(l)?l.replace(/es$/,""):/[^su]s$/.test(l)?l.slice(0,-1):l;w.push(l);return w.join(" ")}
 function fq(n){var w=Math.floor(n+1e-9),f=n-w,F=[[0,""],[.125,"1/8"],[.25,"1/4"],[1/3,"1/3"],[.375,"3/8"],[.5,"1/2"],[.625,"5/8"],[2/3,"2/3"],[.75,"3/4"],[.875,"7/8"],[1,"1"]];
 for(var k=0;k<F.length;k++){if(Math.abs(f-F[k][0])<.02){if(F[k][0]===1){w++;return String(w)}var s=F[k][1];return w&&s?w+" "+s:w?String(w):s}}return fmt(n)}
-function norm(i){var t=String(i.t||"").replace(/\([^)]*\)/g,"").split(",")[0].trim(),q=i.q,u=null;
+function norm(i){var sg=String(i.t||"").replace(/\([^)]*\)/g,"").split(","),t=sg[0].trim();while(sg.length>1&&/(^|\s)(boneless|skinless|bone-in|skin-on)$/i.test(t)){sg.shift();t=t+" "+sg[0].trim()}var q=i.q,u=null;
 if(q!==null){var m=t.match(/^([a-zA-Z]+)\.?\s+(?:of\s+)?(.+)$/);if(m&&UI[m[1].toLowerCase()]){u=UI[m[1].toLowerCase()];t=m[2]}else{var c=t.match(/^(.+?)\s+(cloves?)$/i);if(c){u=UI.clove;t=c[1]}}}
 var nm=t.toLowerCase().replace(/^((large|medium|small|big|fresh|ripe)\s+)+/,"").trim()||String(i.t||"").toLowerCase();
 return{q:q,u:u,name:nm}}
