@@ -1,5 +1,82 @@
 var SEED=[
  {
+  "id": "r_frozen_fish_sticks",
+  "title": "Frozen Fish Sticks with Dill Tartar Sauce",
+  "servings": 4,
+  "tags": [
+   "quick",
+   "gluten free",
+   "freezer friendly",
+   "air fryer"
+  ],
+  "img": "img/frozen-fish-sticks.jpg",
+  "ing": [
+   {
+    "q": 1,
+    "t": "tablespoon chopped fresh dill (tartar sauce)"
+   },
+   {
+    "q": 2,
+    "t": "tablespoons drained capers, minced"
+   },
+   {
+    "q": 0.25,
+    "t": "cup fat-free Greek yogurt"
+   },
+   {
+    "q": 0.25,
+    "t": "cup light mayonnaise"
+   },
+   {
+    "q": 0.5,
+    "t": "lemon, juiced (tartar sauce)"
+   },
+   {
+    "q": 28,
+    "t": "ounces skinless wild cod or haddock fillets (thawed, if frozen)"
+   },
+   {
+    "q": 1,
+    "t": "teaspoon kosher salt"
+   },
+   {
+    "q": 2,
+    "t": "teaspoons finely chopped fresh dill"
+   },
+   {
+    "q": 1,
+    "t": "teaspoon lemon zest"
+   },
+   {
+    "q": 2,
+    "t": "large egg whites, lightly beaten"
+   },
+   {
+    "q": 1.125,
+    "t": "cups plain or gluten-free panko bread crumbs (1 cup plus 2 tbsp)"
+   },
+   {
+    "q": null,
+    "t": "Olive oil spray"
+   }
+  ],
+  "steps": [
+   "Prepare the sauce: Combine the ingredients for the dill tartar sauce in a small bowl and refrigerate until ready to eat.",
+   "Prepare the fish: Cut the fish into 16 sticks, about 4 x 1 inches. Season with 1/2 teaspoon salt, the 2 teaspoons dill, and the lemon zest.",
+   "Place the egg whites in a shallow bowl. In a second shallow bowl, combine the panko with the remaining 1/2 teaspoon salt. Dip the fish into the egg whites, then the panko. Set aside.",
+   "Serve Now: Preheat the oven to 450°F. Line a sheet pan with foil and spray with oil. Lay the fish sticks on the sheet pan, making sure they don't touch. Spray the tops of the fish sticks with oil and bake in the center of the oven for 14 to 16 minutes, turning halfway, until golden and crisp. Serve hot with tartar sauce.",
+   "Freeze and Serve Later: Place the sheet pan with the uncooked breaded fish sticks in the freezer for about 2 hours to flash freeze them. Once frozen, transfer them carefully into a freezer bag or container, squeezing out all the air. To serve, preheat the oven to 475°F. Place the frozen fish sticks on a sheet pan lined with foil and spray with oil. Bake from frozen for 12 to 14 minutes, turning halfway, until they flake easily and are cooked in the center and golden and crisp."
+  ],
+  "storage": "Freezer up to 3 months (unbaked)",
+  "nut": {
+   "cal": "298",
+   "pro": "41",
+   "carb": "17",
+   "fat": "6.5"
+  },
+  "ts": 1792951748925
+ },
+ {
   "id": "r_breakfast_quesadillas",
   "title": "Breakfast Quesadillas",
   "servings": 4,
