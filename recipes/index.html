@@ -20,6 +20,8 @@ label{display:block;margin:14px 0 4px;font-weight:600}
 .btn{background:var(--acc);color:var(--on);border:0;border-radius:8px;padding:12px 18px;font-weight:600;cursor:pointer}
 .ghost{background:none;border:0;color:var(--acc);padding:8px 0;cursor:pointer;font-weight:600}
 .row{display:flex;gap:10px;align-items:center}
+.stack{display:flex;flex-direction:column;gap:10px}
+.btn.wide{width:100%;padding:12px;border:1px solid var(--acc);line-height:1.5}
 .grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin:0 -16px 8px;padding:env(safe-area-inset-top,0px) 16px 0;position:sticky;top:0;z-index:10;background:var(--bg)}
 .tabs button{flex:1;background:none;border:0;border-bottom:3px solid transparent;padding:10px 4px;font-weight:600;color:var(--mute);cursor:pointer}
@@ -81,7 +83,7 @@ function tw(id){var i=S.plan.indexOf(id);if(i>-1)S.plan.splice(i,1);else S.plan.
 function match(r){return r.title.toLowerCase().indexOf(q.toLowerCase())>-1&&(!tg||r.tags.indexOf(tg)>-1)}
 function list(){var tags=[];S.R.forEach(function(r){r.tags.forEach(function(t){if(tags.indexOf(t)<0)tags.push(t)})});
 var ch=tags.length?'<div class="chips">'+tags.map(function(t){return'<button class="chip" aria-pressed="'+(tg===t)+'" onclick="tg=tg===\''+esc(t)+'\'?\'\':\''+esc(t)+'\';draw()">'+esc(t)+'</button>'}).join("")+'</div>':"";
-return nav()+'<h1>Recipe Box</h1><div class="row"><input id="q" type="search" placeholder="Search recipes" aria-label="Search recipes" value="'+esc(q)+'" oninput="q=this.value;keep()"><button class="btn" onclick="go(\'new\')">Add recipe</button></div>'+ch+'<div id="l">'+items()+'</div><p class="mute">Saved on this device. Open the menu (&#9776;) at the top right to sync with your other devices, or to import or export recipes.</p>'}
+return nav()+'<h1>Recipe Box</h1><div class="stack"><input id="q" type="search" placeholder="Search recipes" aria-label="Search recipes" value="'+esc(q)+'" oninput="q=this.value;keep()"><button class="btn wide" onclick="go(\'new\')">Add recipe</button></div>'+ch+'<div id="l">'+items()+'</div><p class="mute">Saved on this device. Open the menu (&#9776;) at the top right to sync with your other devices, or to import or export recipes.</p>'}
 function items(){var f=S.R.filter(match);if(!f.length)return'<p class="mute">'+(q||tg?"No recipes match.":"No recipes yet. Add your first one.")+'</p>';
 return f.map(function(r){var on=S.plan.indexOf(r.id)>-1;return'<div class="item">'+(r.img?'<img src="'+r.img+'" alt="">':"")+'<button class="open" onclick="go(\'view\',\''+r.id+'\')"><b>'+esc(r.title)+'</b><span class="mute">Serves '+r.servings+(r.tags.length?", "+esc(r.tags.join(", ")):"")+'</span></button><button class="pill" aria-pressed="'+on+'" onclick="tw(\''+r.id+'\')">'+(on?"In this week":"Add to week")+'</button></div>'}).join("")}
 function keep(){document.getElementById("l").innerHTML=items()}
