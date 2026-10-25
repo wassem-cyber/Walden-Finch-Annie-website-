@@ -1,5 +1,119 @@
 var SEED=[
  {
+  "id": "r_diy_chicken_taco_kits",
+  "title": "DIY Chicken Taco Kits",
+  "servings": 4,
+  "tags": [
+   "quick",
+   "gluten free",
+   "freezer friendly"
+  ],
+  "img": "img/diy-chicken-taco-kits.jpg",
+  "ing": [
+   {
+    "q": 1.25,
+    "t": "pounds boneless, skinless chicken thighs, fat trimmed, cut into 1/2-inch-thick strips"
+   },
+   {
+    "q": 1,
+    "t": "large yellow onion, cut into 1/4-inch-thick slices"
+   },
+   {
+    "q": 1,
+    "t": "tablespoon extra-virgin olive oil"
+   },
+   {
+    "q": 3,
+    "t": "tablespoons fresh lime juice"
+   },
+   {
+    "q": 1,
+    "t": "tablespoon ground cumin"
+   },
+   {
+    "q": 1,
+    "t": "tablespoon dried oregano"
+   },
+   {
+    "q": 1,
+    "t": "teaspoon chili powder*"
+   },
+   {
+    "q": 2,
+    "t": "garlic cloves, crushed"
+   },
+   {
+    "q": null,
+    "t": "Kosher salt"
+   },
+   {
+    "q": null,
+    "t": "Freshly ground black pepper"
+   },
+   {
+    "q": null,
+    "t": "Olive oil spray"
+   },
+   {
+    "q": 0.25,
+    "t": "poblano pepper, with seeds (poblano cream)"
+   },
+   {
+    "q": 1,
+    "t": "cup light sour cream (poblano cream)"
+   },
+   {
+    "q": 2,
+    "t": "tablespoons fresh lime juice (poblano cream)"
+   },
+   {
+    "q": 2,
+    "t": "tablespoons chopped fresh cilantro (poblano cream)"
+   },
+   {
+    "q": 0.5,
+    "t": "teaspoon kosher salt (poblano cream)"
+   },
+   {
+    "q": 8,
+    "t": "(6-inch) corn tortillas"
+   },
+   {
+    "q": 2,
+    "t": "cups shredded green cabbage"
+   },
+   {
+    "q": 0.25,
+    "t": "cup chopped red onion"
+   },
+   {
+    "q": 1,
+    "t": "lime, cut into 8 wedges"
+   },
+   {
+    "q": null,
+    "t": "Chopped fresh cilantro, for garnish"
+   }
+  ],
+  "steps": [
+   "Preheat the oven to 350°F.",
+   "Make the chicken: In a medium bowl, toss the chicken and onion with the olive oil, lime juice, cumin, oregano, chili powder, and garlic. Season with 1 1/4 teaspoons salt and black pepper to taste. (If making the chicken ahead, you can freeze at this point. Thaw overnight in the refrigerator before cooking.)",
+   "Heat a large, deep nonstick skillet over high heat until very hot. When hot, spray with oil and add the chicken and onion along with any marinade and cook, stirring occasionally, until the liquid evaporates and the chicken and onion are tender and browned on the edges, 20 to 25 minutes. Set aside.",
+   "Make the poblano cream: Place the poblano on a small baking sheet and spritz with oil. Roast until slightly charred, flipping halfway through, about 12 minutes. Transfer to a food processor with the sour cream, lime juice, cilantro, salt, and black pepper to taste and process until smooth.",
+   "Serve Now: Heat the tortillas on an open flame for 30 seconds. Divide the chicken among the charred tortillas and top with the cabbage, red onion, 1 teaspoon cream, a squeeze of lime juice, and cilantro. (You'll have about 1 cup cream left over; store up to 4 days in an airtight container.)",
+   "Meal Prep: Roll up each tortilla and place in an airtight container with 3/4 cup chicken and onion, 1/2 cup cabbage, 1 tablespoon red onion, 2 lime wedges, cilantro, and 1 teaspoon cream. When ready to serve, warm the tortillas on an open flame for about 30 seconds, and reheat the chicken in a skillet over medium heat for about 3 minutes or in the microwave. Top as directed.",
+   "*Gluten free: read the label to be sure the chili powder is gluten-free."
+  ],
+  "storage": "Fridge up to 4 days (chicken and sauce); freezer up to 3 months (marinated raw chicken)",
+  "nut": {
+   "cal": "366",
+   "pro": "32",
+   "carb": "33",
+   "fat": "12.5"
+  },
+  "ts": 1792951214144
+ },
+ {
   "id": "r_spicy_salmon_poke_bowls",
   "title": "Spicy Salmon Poke Bowls",
   "servings": 4,
