@@ -1,5 +1,63 @@
 var SEED=[
  {
+  "id": "r_breakfast_on_the_run_bowls",
+  "title": "Breakfast-on-the-Run Bowls",
+  "servings": 2,
+  "tags": [
+   "quick",
+   "vegetarian",
+   "gluten free",
+   "dairy free",
+   "air fryer"
+  ],
+  "ing": [
+   {
+    "q": 4,
+    "t": "large hard-boiled eggs (see air fryer directions)"
+   },
+   {
+    "q": 1,
+    "t": "cup halved cherry tomatoes"
+   },
+   {
+    "q": 1,
+    "t": "small Hass avocado"
+   },
+   {
+    "q": 0.5,
+    "t": "lemon"
+   },
+   {
+    "q": 1,
+    "t": "teaspoon extra-virgin olive oil"
+   },
+   {
+    "q": 0.125,
+    "t": "teaspoon kosher salt"
+   },
+   {
+    "q": null,
+    "t": "Freshly ground black pepper"
+   },
+   {
+    "q": null,
+    "t": "Pinch of crushed red pepper flakes (optional)"
+   }
+  ],
+  "steps": [
+   "Cut the hard-boiled eggs in half and place in 2 bowls. Top each bowl with 1/2 cup tomatoes and half of the avocado. Squeeze lemon juice over the avocado and drizzle with the olive oil, then season with salt, black pepper to taste, and red pepper flakes (if using).",
+   "Air-Frying Eggs: Place cold eggs in the air fryer and cook at 250°F for about 17 minutes. No water needed, and no need to stand near the stove while they cook. If you like your yolk a little soft, run the eggs under cold water and peel them right away to stop the eggs from cooking. If you like the yolk firm, wait about 5 minutes before peeling.",
+   "Variations: Add leftover veggies from the night before. Add cucumbers and olives for a Mediterranean twist. Add leftover grains like quinoa or farro."
+  ],
+  "nut": {
+   "cal": "285",
+   "pro": "14",
+   "carb": "10",
+   "fat": "21.5"
+  },
+  "ts": 1792949823737
+ },
+ {
   "id": "r_eggplant_parmesan",
   "title": "Eggplant Parmesan",
   "servings": 8,
