@@ -13,7 +13,7 @@ function merge(a,b){a=smeta(a);b=smeta(b);var o={R:[],rt:{},del:{},seen:[],pt:Ma
 b.R.forEach(function(r){if(!a.R.some(function(x){return x.id===r.id}))ids.push(r.id)});a.R.forEach(function(r){ids.push(r.id)});
 [a,b].forEach(function(s){s.R.forEach(function(r){var t=s.rt[r.id]||0,c=pick[r.id];if(!c||t>c.t)pick[r.id]={r:r,t:t}})});
 ids.forEach(function(id){var c=pick[id];if((o.del[id]||0)>c.t)return;o.R.push(c.r)});
-var w=b.pt>a.pt?b:a;o.plan=w.plan.filter(function(id){return o.R.some(function(r){return r.id===id})});o.shop=w.shop;return o}
+var n=function(s){return s.plan.length+Object.keys(s.shop).length},w=b.pt>a.pt||(b.pt===a.pt&&n(b)>n(a))?b:a;o.plan=w.plan.filter(function(id){return o.R.some(function(r){return r.id===id})});o.shop=w.shop;return o}
 function apply(m){S=m;shop=S.shop;snap=take();save0();if(view!=="new"&&view!=="edit")draw()}
 function sync(){if(!code)return Promise.resolve();if(syncing){again=true;return Promise.resolve()}syncing=true;clearTimeout(syncT);
 var u="/api/sync?code="+code;
@@ -26,7 +26,7 @@ return fetch(u,{method:"PUT",headers:{"content-type":"application/json"},body:ou
 var save0=save;save=function(){stamp();save0();if(code){clearTimeout(syncT);syncT=setTimeout(sync,800)}};
 function newCode(){var a="abcdefghjkmnpqrstuvwxyz23456789",s="";var v=new Uint32Array(12);crypto.getRandomValues(v);for(var i=0;i<12;i++)s+=a[v[i]%a.length];return s}
 function setCode(c){code=c;try{if(c)localStorage.setItem(SK,c);else localStorage.removeItem(SK)}catch(e){}}
-function syncOn(){setCode(newCode());draw();sync()}
+function syncOn(){smeta(S);if(!S.pt){S.pt=Date.now();save0()}setCode(newCode());draw();sync()}
 function syncJoin(c){c=String(c||"").toLowerCase().replace(/[^a-z0-9]/g,"");if(c.length<10){alert("That code looks too short. Check it and try again.");return}setCode(c);draw();sync()}
 function syncOff(){if(!confirm("Stop syncing on this device? Your recipes stay here, but changes won’t reach your other devices."))return;setCode(null);draw()}
 function syncLink(){return location.origin+"/recipes/#sync="+code}
