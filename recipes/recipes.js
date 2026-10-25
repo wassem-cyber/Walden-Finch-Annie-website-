@@ -1,5 +1,98 @@
 var SEED=[
  {
+  "id": "r_indian_inspired_shepherds_pie",
+  "title": "Indian-Inspired Shepherd's Pie",
+  "servings": 6,
+  "tags": [
+   "gluten free",
+   "freezer friendly"
+  ],
+  "img": "img/indian-inspired-shepherds-pie.jpg",
+  "ing": [
+   {
+    "q": 1.5,
+    "t": "pounds Yukon Gold potatoes, peeled and diced into 1-inch pieces"
+   },
+   {
+    "q": null,
+    "t": "Kosher salt"
+   },
+   {
+    "q": 0.25,
+    "t": "cup sour cream or full-fat yogurt"
+   },
+   {
+    "q": 1,
+    "t": "teaspoon ground turmeric"
+   },
+   {
+    "q": 1,
+    "t": "teaspoon garam masala*"
+   },
+   {
+    "q": 0.75,
+    "t": "teaspoon ground cumin"
+   },
+   {
+    "q": 0.75,
+    "t": "teaspoon chili powder,* plus more for dusting"
+   },
+   {
+    "q": 2,
+    "t": "teaspoons ghee or unsalted butter"
+   },
+   {
+    "q": 1,
+    "t": "large yellow onion, minced"
+   },
+   {
+    "q": 3,
+    "t": "garlic cloves, minced"
+   },
+   {
+    "q": 1,
+    "t": "teaspoon grated fresh ginger"
+   },
+   {
+    "q": 1,
+    "t": "pound ground 93% lean turkey"
+   },
+   {
+    "q": 0.75,
+    "t": "cup tomato sauce"
+   },
+   {
+    "q": 2,
+    "t": "tablespoons chopped fresh cilantro, plus more for garnish (optional)"
+   },
+   {
+    "q": 1,
+    "t": "red chile pepper, seeded and minced"
+   },
+   {
+    "q": 0.75,
+    "t": "cup frozen peas"
+   }
+  ],
+  "steps": [
+   "Place the potatoes and 1 tablespoon salt in a medium saucepan. Cover with water, bring to a boil, and cook for 16 to 18 minutes, until tender. Drain and return to the saucepan. Add 1/2 teaspoon salt, the sour cream, 1/2 teaspoon turmeric, 1/4 teaspoon garam masala, 1/4 teaspoon cumin, and 1/4 teaspoon chili powder, and mash with a potato masher. Set aside.",
+   "Heat a large, deep nonstick skillet over medium heat and melt the ghee. Add the onion and cook until golden, 6 to 8 minutes. Add the garlic and ginger and cook until fragrant, about 2 minutes.",
+   "Add the ground turkey and 1 teaspoon salt to the skillet. Brown the meat, using a wooden spoon to break it into small pieces, until cooked through, 4 to 5 minutes. Add the tomato sauce, 1/4 cup water, cilantro, chile pepper, remaining 3/4 teaspoon garam masala, remaining 1/2 teaspoon cumin, remaining 1/2 teaspoon chili powder, and remaining 1/2 teaspoon turmeric, and stir well. Cover and cook on low heat for 20 to 25 minutes, then stir in the frozen peas and cook for about 3 minutes more, until the peas are warmed through.",
+   "Transfer the meat mixture to an 8- or 9-inch baking dish or deep pie plate, spreading it across in an even layer. Dollop the potatoes across the top and gently push them around until they cover the entire top of the casserole, then run the tines of a fork across the top for texture. Dust with the chili powder for color.",
+   "Serve Now: Position an oven rack in the center of the oven and preheat to 375°F. Place the pie on a sheet pan and bake for 25 to 30 minutes, until heated through. Adjust an oven rack 4 to 6 inches from the heating element and turn the broiler to high. Finish under the broiler for 2 to 3 minutes. Serve as is or sprinkled with cilantro, if using.",
+   "Freeze and Serve Later: Assemble the unbaked pie in a foil or freezer-to-ovenproof baking dish or pie plate. Cover the pie with foil and freeze. When ready to bake, transfer the baking dish to a sheet pan and bake, covered, in a 350°F oven until heated through in the center, about 2 1/2 hours. (If you thawed it the night before, bake for 30 to 35 minutes.) Adjust an oven rack 4 to 6 inches from the heating element and turn the broiler to high. Finish under the broiler for 2 to 3 minutes.",
+   "*Gluten free: read the labels to be sure the garam masala and chili powder are gluten-free."
+  ],
+  "storage": "Fridge up to 4 days; freezer up to 6 months",
+  "nut": {
+   "cal": "271",
+   "pro": "19",
+   "carb": "28",
+   "fat": "10"
+  },
+  "ts": 1792951331858
+ },
+ {
   "id": "r_diy_chicken_taco_kits",
   "title": "DIY Chicken Taco Kits",
   "servings": 4,
