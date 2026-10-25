@@ -1,5 +1,80 @@
 var SEED=[
  {
+  "id": "r_stuffed_chicken_parmesan",
+  "title": "Stuffed Chicken Parmesan and Asparagus",
+  "servings": 4,
+  "tags": [
+   "quick",
+   "gluten free",
+   "freezer friendly"
+  ],
+  "img": "img/stuffed-chicken-parmesan.jpg",
+  "ing": [
+   {
+    "q": null,
+    "t": "Olive oil spray"
+   },
+   {
+    "q": 4,
+    "t": "boneless, skinless chicken breasts (8 ounces each)"
+   },
+   {
+    "q": 1,
+    "t": "teaspoon kosher salt"
+   },
+   {
+    "q": null,
+    "t": "Freshly ground black pepper"
+   },
+   {
+    "q": 6,
+    "t": "ounces shredded whole-milk mozzarella cheese* (1 1/2 cups)"
+   },
+   {
+    "q": 1,
+    "t": "large egg"
+   },
+   {
+    "q": 0.5,
+    "t": "cup Italian seasoned bread crumbs, whole wheat or gluten-free"
+   },
+   {
+    "q": 2,
+    "t": "tablespoons grated Parmesan cheese"
+   },
+   {
+    "q": 1,
+    "t": "pound thin asparagus (about 1 bunch), ends trimmed, halved lengthwise"
+   },
+   {
+    "q": 1,
+    "t": "cup Basil Pomodoro Sauce or store-bought marinara sauce"
+   },
+   {
+    "q": null,
+    "t": "Chopped fresh basil, for garnish"
+   }
+  ],
+  "steps": [
+   "Preheat the oven to 400°F. Line 1 large sheet pan with foil and spray with olive oil.",
+   "Season the chicken with 1/2 teaspoon salt and pepper to taste. Pound the thicker end of the chicken slightly to make both sides even. Cut a pocket into the side of each breast while leaving the ends intact. Fill each piece with 1/4 cup mozzarella. Use 1 to 2 toothpicks on each breast to keep the pockets closed.",
+   "In a small bowl, beat the egg. In a larger shallow bowl, combine the bread crumbs and Parmesan. Working piece by piece, dip the chicken in the egg, then in the bread crumb mixture, then place to one side of the prepared sheet pan. When finished, spray both sides of the chicken with oil.",
+   "Place the asparagus on the other side of the sheet pan. Spritz with olive oil and season with the remaining 1/2 teaspoon salt and black pepper to taste.",
+   "Bake for about 20 minutes, tossing the vegetables and flipping the chicken halfway through, until the chicken is golden and cooked through in the center.",
+   "Serve Now: Remove the chicken from the oven and top each piece with 1/4 cup marinara sauce and 2 tablespoons of the remaining mozzarella. Return to the oven and bake until the mozzarella is melted, 2 to 3 minutes. Remove the toothpicks and top the chicken with basil. Serve with the asparagus on the side.",
+   "Meal Prep: Bake the chicken and asparagus as directed without the sauce and mozzarella topping. Transfer the cooked asparagus and chicken to 4 meal prep containers and let cool. Top with 1/4 cup marinara and 2 tablespoons mozzarella and store. Reheat in the microwave for 2 to 3 minutes.",
+   "*Gluten free: read the label to be sure the mozzarella (and bread crumbs) are gluten-free."
+  ],
+  "storage": "Fridge up to 4 days; freezer up to 3 months (thaw overnight in the fridge before reheating)",
+  "nut": {
+   "cal": "501",
+   "pro": "66",
+   "carb": "18",
+   "fat": "18.5"
+  },
+  "ts": 1792951447537
+ },
+ {
   "id": "r_indian_inspired_shepherds_pie",
   "title": "Indian-Inspired Shepherd's Pie",
   "servings": 6,
