@@ -1,5 +1,56 @@
 var SEED=[
  {
+  "id": "r_pbj_oatmeal_cookies",
+  "title": "PB+J Healthy Oatmeal Cookies",
+  "servings": 4,
+  "tags": [
+   "quick",
+   "vegetarian",
+   "gluten free",
+   "dairy free",
+   "freezer friendly"
+  ],
+  "img": "img/pbj-oatmeal-cookies.jpg",
+  "ing": [
+   {
+    "q": null,
+    "t": "Cooking spray"
+   },
+   {
+    "q": 2,
+    "t": "medium extra-ripe bananas, mashed with a fork"
+   },
+   {
+    "q": 2,
+    "t": "tablespoons chunky peanut butter"
+   },
+   {
+    "q": 1,
+    "t": "cup uncooked quick-cooking oats (check the label to be sure it's gluten-free)"
+   },
+   {
+    "q": 4,
+    "t": "teaspoons reduced-sugar fruit jam (grape, raspberry, strawberry, or any flavor you like)"
+   }
+  ],
+  "steps": [
+   "Preheat the oven to 350°F. Spray a nonstick baking sheet with cooking spray or use a silicone baking mat.",
+   "In a medium bowl, combine the mashed bananas and peanut butter and mix well. Add the oats and mix until thoroughly combined.",
+   "Place generous tablespoons of the batter on the baking sheet (you'll have about 16 cookies). Make an indent in the center of each with the back of the measuring spoon.",
+   "Bake until golden, about 15 minutes. Remove from the oven.",
+   "Serve Now: Immediately top each cookie with 1/4 teaspoon jam. Enjoy while warm.",
+   "Meal Prep: To refrigerate or freeze, transfer the cookies, without the jam, to a zip-top plastic bag. When ready to eat, pop them in the microwave for a few seconds to reheat. Top with the jam and serve."
+  ],
+  "storage": "Fridge up to 4 days; freezer up to 3 months",
+  "nut": {
+   "cal": "188",
+   "pro": "5",
+   "carb": "32",
+   "fat": "5"
+  },
+  "ts": 1792951843463
+ },
+ {
   "id": "r_frozen_fish_sticks",
   "title": "Frozen Fish Sticks with Dill Tartar Sauce",
   "servings": 4,
