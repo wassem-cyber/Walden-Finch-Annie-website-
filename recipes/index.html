@@ -51,17 +51,15 @@ ul.ing input{width:auto}
 .home:hover{color:var(--acc)}
 :focus-visible{outline:3px solid var(--acc);outline-offset:2px}
 </style></head><body><main id="app"></main>
+<script src="recipes.js"></script>
 <script>
 var KEY="recipe-box-v2",S={R:[],plan:[]},view="list",cur=null,scale=1,q="",tg="",checked={},shop={},img="";
-var SEED=[
-{id:"s1",title:"Lemon garlic pasta",servings:2,tags:["pasta","quick"],ing:["200 g spaghetti","3 garlic cloves, sliced","2 tbsp olive oil","1 lemon, zested and juiced","1/4 cup grated parmesan","Salt and pepper"],steps:["Boil the spaghetti in salted water until al dente. Save a mug of pasta water.","Warm the oil and garlic over low heat for 2 minutes.","Toss in the pasta, lemon zest, juice and a splash of pasta water.","Stir in the parmesan, season and serve."]},
-{id:"s2",title:"Weeknight chickpea curry",servings:4,tags:["vegetarian","dinner"],ing:["2 cans chickpeas, drained","1 onion, diced","2 tbsp curry paste","1 can coconut milk","2 cups spinach","Rice, to serve"],steps:["Soften the onion in a splash of oil, about 5 minutes.","Stir in the curry paste for 1 minute.","Add chickpeas and coconut milk. Simmer for 15 minutes.","Fold in the spinach until wilted. Serve over rice."]}];
 function parse(s){var m=s.trim().match(/^(\d+\s+\d+\/\d+|\d+\/\d+|\d*\.?\d+)\s*(.*)$/);if(!m)return{q:null,t:s.trim()};var v=m[1],n;if(v.indexOf("/")>-1){var p=v.split(/\s+/),f=p[p.length-1].split("/");n=(p.length>1?+p[0]:0)+f[0]/f[1]}else n=+v;return{q:n,t:m[2]}}
 function fmt(n){return String(Math.round(n*100)/100)}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function load(){try{var d=JSON.parse(localStorage.getItem(KEY)||localStorage.getItem("recipe-box-v1")||"null");if(Array.isArray(d))S.R=d;else if(d&&d.R)S=d}catch(e){}
 S.R.forEach(function(r){r.tags=r.tags||[]});S.plan=S.plan||[];
-if(!S.R.length)S.R=SEED.map(function(r){return{id:r.id,title:r.title,servings:r.servings,tags:r.tags,ing:r.ing.map(parse),steps:r.steps}})}
+S.seen=S.seen||[];SEED.forEach(function(r){if(S.seen.indexOf(r.id)>-1)return;S.seen.push(r.id);if(!rec(r.id))S.R.push(JSON.parse(JSON.stringify(r)))})}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){alert("Couldn’t save. Storage may be full, so try a smaller photo or delete a recipe.")}}
 function rec(id){return S.R.find(function(x){return x.id===id})}
 function go(v,id){view=v;cur=id||null;scale=1;checked={};img="";draw()}
