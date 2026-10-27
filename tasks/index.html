@@ -85,6 +85,11 @@ main{margin-left:280px;padding:0 24px 120px}
 .chip{display:inline-flex;align-items:center;gap:4px;border:1px solid #ddd;border-radius:5px;padding:3px 8px;font-size:.8rem;color:var(--mute);background:#fff}
 .chip.hl{background:var(--acc2);border-color:var(--acc2);color:var(--acc)}
 button.chip{cursor:pointer}
+.sug:not(:empty){border:1px solid #ddd;border-radius:8px;margin:4px 0 8px;max-height:220px;overflow-y:auto}
+.sg{display:flex;align-items:center;gap:8px;width:100%;text-align:left;background:#fff;border:0;border-bottom:1px solid var(--line);padding:10px 12px;cursor:pointer}
+.sg:last-child{border-bottom:0}
+.sg:hover,.sg:focus-visible{background:var(--acc2)}
+.sg svg{color:var(--acc)}
 .hint{color:var(--mute);font-size:.78rem;margin:8px 0 0}
 .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-top:1px solid var(--line);padding-top:10px;margin-top:4px}
 .bar select,.bar input{border:1px solid #ddd;border-radius:6px;padding:6px 8px;background:#fff;max-width:50%}
@@ -127,5 +132,5 @@ button.chip{cursor:pointer}
 <button class="fab" aria-label="Add task" onclick="quick()"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
 <div id="modal"></div>
 <div id="toast" role="status" aria-live="polite"></div>
-<script src="tasks.js?v=4"></script>
+<script src="tasks.js?v=5"></script>
 </body></html>
