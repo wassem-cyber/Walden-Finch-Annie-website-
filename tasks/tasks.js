@@ -240,8 +240,12 @@ return b.then(function(x){return{name:f.name,text:td.decode(x)}})}))}
 function csv(s){s=s.replace(/^﻿/,"");var rows=[],row=[],f="",q=false;for(var i=0;i<s.length;i++){var c=s[i];
 if(q){if(c==='"'){if(s[i+1]==='"'){f+='"';i++}else q=false}else f+=c}else if(c==='"')q=true;else if(c===","){row.push(f);f=""}
 else if(c==="\n"||c==="\r"){if(c==="\r"&&s[i+1]==="\n")i++;row.push(f);rows.push(row);row=[];f=""}else f+=c}if(f||row.length){row.push(f);rows.push(row)}return rows}
+// Todoist file names end in an id like "[6Jf8VQXx]"; early imports kept it in the project name.
+var TID=/\s*\[[A-Za-z0-9_-]+\]$/;
+function tidy(){var ch=false;S.P.slice().forEach(function(p){if(!TID.test(p.name))return;var n=p.name.replace(TID,"").trim()||"Imported";ch=true;
+if(/^inbox$/i.test(n)){S.T.forEach(function(t){if(t.pj===p.id)t.pj="inbox"});S.P.splice(S.P.indexOf(p),1);if(vp===p.id){view="inbox";vp=""}}else p.name=n});if(ch)save();return ch}
 function impCsv(f,n){var r=csv(f.text),h=(r[0]||[]).map(function(x){return x.trim().toUpperCase()}),c=function(k){return h.indexOf(k)};if(c("TYPE")<0||c("CONTENT")<0)return;
-var name=f.name.split("/").pop().replace(/\.csv$/i,"").replace(/\s*\[\d+\]$/,"").trim()||"Imported",pj="inbox",last=null,g=function(row,k){return c(k)>-1?(row[c(k)]||"").trim():""};
+var name=f.name.split("/").pop().replace(/\.csv$/i,"").replace(TID,"").trim()||"Imported",pj="inbox",last=null,g=function(row,k){return c(k)>-1?(row[c(k)]||"").trim():""};
 if(!/^inbox$/i.test(name)){var had=S.P.length;pj=projFor(name);if(S.P.length>had)n.p++}
 r.slice(1).forEach(function(row,i){var ty=g(row,"TYPE").toLowerCase(),t=g(row,"CONTENT").replace(/^\*\s+/,"");
 if(ty==="note"&&last&&t){last.n=(last.n?last.n+"\n":"")+t;return}if(ty!=="task"||!t)return;
@@ -267,7 +271,7 @@ function hsort(x,y){return y.at-x.at||(x.id<y.id?-1:x.id>y.id?1:0)}
 function srt(o){var r={};Object.keys(o).sort().forEach(function(k){r[k]=o[k]});return r}
 function byId(l){return l.slice().sort(function(a,b){return a.id<b.id?-1:1})}
 function canon(s){s=norm(s);return JSON.stringify({T:byId(s.T),P:byId(s.P),H:s.H.slice().sort(hsort),del:srt(s.del),hc:s.hc})}
-function apply(m){S=m;snap=take();persist();draw()}
+function apply(m){S=m;snap=take();persist();tidy();draw()}
 function sync(){if(!code)return Promise.resolve();if(syncing){again=true;return Promise.resolve()}syncing=true;pulled=false;clearTimeout(syncT);if(view==="sync")draw();
 var u="/api/tasks-sync?code="+code;
 return fetch(u+"&t="+Date.now(),{cache:"no-store"}).then(function(r){if(r.status===404)return null;if(!r.ok)throw 0;return r.json()}).then(function(remote){
@@ -290,7 +294,7 @@ var st=syncing?"Syncing…":syncMsg?syncMsg:lastOk?"Synced at "+new Date(lastOk)
 return h+'<p>Sync is on. Your sync code is <b>'+esc(code)+'</b>, shared with your Recipe Box. All your devices should show this same code.</p><p><button class="btn" onclick="sync()"'+(syncing?" disabled":"")+'>'+(syncing?"Syncing…":"Sync now")+'</button></p><p role="status"'+(syncMsg?' style="color:var(--od)"':' class="mute"')+'>'+esc(st)+'</p><p class="mute">On this device: '+open().length+' open tasks, '+S.P.length+' projects.</p><p>To add another device, open this link on it:</p><p><button class="btn" onclick="shareLink()">Share sync link</button></p><p class="mute">Anyone with this link or code can see and change your tasks and recipes, so only share it with your own devices or family.</p><p><button class="ghost" onclick="syncOff()">Stop syncing on this device</button></p>'+joinBox("Different code on your other device?")+'</div>'}
 function fromHash(){var m=location.hash.match(/sync=([a-z0-9]+)/i);if(!m)return false;history.replaceState(null,"",location.pathname+location.search);if(m[1].toLowerCase()===code)return false;setCode(m[1].toLowerCase());view="sync";return true}
 
-load();fromHash();snap=take();draw();if(code)sync();checkRem();
+load();fromHash();snap=take();tidy();draw();if(code)sync();checkRem();
 window.addEventListener("hashchange",function(){if(fromHash()){draw();sync()}});
 document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible"){sync();checkRem()}});
 setInterval(function(){if(document.visibilityState==="visible")sync()},30000);setInterval(checkRem,20000);
