@@ -13,7 +13,7 @@ check:'<path d="M20 6 9 17l-5-5"/>',done:'<circle cx="12" cy="12" r="10"/><path 
 menu:'<path d="M4 6h16M4 12h16M4 18h16"/>',search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
 sync:'<path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M3 21v-5h5"/>',
 flag:'<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/>',more:'<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>',
-back:'<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',book:'<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>'};
+back:'<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',imp:'<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>',book:'<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>'};
 function ic(p,s){s=s||18;return'<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'}
 function flag(p,s){return'<svg width="'+(s||16)+'" height="'+(s||16)+'" viewBox="0 0 24 24" fill="'+(p<4?PC[p]:"none")+'" stroke="'+PC[p]+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+I.flag+'</svg>'}
 function todayIcon(){return'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+I.cal+'<text x="12" y="19" text-anchor="middle" font-size="9" font-weight="700" fill="currentColor" stroke="none" font-family="system-ui,sans-serif">'+new Date().getDate()+'</text></svg>'}
@@ -76,6 +76,7 @@ cut(new RegExp("\\b(?:(next|on|this)\\s+"+WD+"|(sunday|monday|tuesday|wednesday|
 function md(m,d,y){var yr=y?(+y<100?2000+ +y:+y):new Date().getFullYear(),x=new Date(yr,m,d);if(x.getMonth()!==m)return false;var k=dk(x);if(!y&&k<t)k=dk(new Date(yr+1,m,d));return dt(k)}
 cut(new RegExp("\\b"+MO+"\\s+(\\d{1,2})(?:st|nd|rd|th)?(?:,?\\s+(\\d{4}))?\\b","i"),function(m,mo,d,y){return md(MON.indexOf(mo.toLowerCase().slice(0,3)),+d,y)});
 cut(new RegExp("\\b(\\d{1,2})(?:st|nd|rd|th)?\\s+"+MO+"(?:\\s+(\\d{4}))?\\b","i"),function(m,d,mo,y){return md(MON.indexOf(mo.toLowerCase().slice(0,3)),+d,y)});
+cut(/\b(\d{4})-(\d{2})-(\d{2})(?:[T ](\d{2}):(\d{2}))?\b/,function(m,y,mo,d,h,mi){if(o.d||md(+mo-1,+d,y)===false)return false;if(h&&!o.tm&&+h<24&&+mi<60)o.tm=h+":"+mi});
 cut(/\b(\d{1,2})\/(\d{1,2})(?:\/(\d{2}|\d{4}))?\b/,function(m,mo,d,y){return md(+mo-1,+d,y)});
 cut(/\s[pP]([1-4])(?=\s)/,function(m,p){if(o.p)return false;o.p=+p});
 cut(/\s#([^\s#]+)(?=\s)/,function(m,n){if(o.pj)return false;o.pj=n});
@@ -113,9 +114,9 @@ return'<a class="home" href="/">'+ic(I.back,15)+'Walden &amp; Finch</a><button c
 +'<div class="sh"><span>My projects</span><button class="ib" aria-label="Add project" onclick="addProj()">'+ic(I.plus,16)+'</button></div>'
 +S.P.slice().sort(byc).map(function(p){return it("project",p.id,'<i class="dot" style="background:'+p.color+'"></i>',esc(p.name),c[p.id])}).join("")
 +(S.P.length?"":'<p class="mute" style="padding:0 8px;margin:4px 0;font-size:.85rem">Add one with + or type #Name in a task.</p>')
-+'<div class="sbot">'+it("reminders","",ic(I.bell),"Reminders")+it("sync","",ic(I.sync),"Sync devices")+'<a class="nv" href="/recipes/">'+ic(I.book)+'<span>Recipe Box</span></a></div>'}
++'<div class="sbot">'+it("reminders","",ic(I.bell),"Reminders")+it("sync","",ic(I.sync),"Sync devices")+it("import","",ic(I.imp),"Import from Todoist")+'<a class="nv" href="/recipes/">'+ic(I.book)+'<span>Recipe Box</span></a></div>'}
 function head(title,extra){return'<header class="top"><button class="ib mob" aria-label="Open menu" onclick="side(1)">'+ic(I.menu,22)+'</button><h1>'+title+'</h1>'+(extra||"")+'</header>'}
-function mainHtml(){return view==="inbox"?listv("inbox","Inbox"):view==="project"?(proj(vp)?listv(vp,esc(pname(vp))):(view="today",todayv())):view==="upcoming"?upv():view==="done"?donev():view==="search"?searchv():view==="sync"?syncv():view==="reminders"?remv():todayv()}
+function mainHtml(){return view==="inbox"?listv("inbox","Inbox"):view==="project"?(proj(vp)?listv(vp,esc(pname(vp))):(view="today",todayv())):view==="upcoming"?upv():view==="done"?donev():view==="search"?searchv():view==="sync"?syncv():view==="reminders"?remv():view==="import"?impv():todayv()}
 function row(t,o){o=o||{};var tk=today(),m=[];
 if(t.d){var cls=t.d<tk?"od":t.d===tk?"td":t.d===addD(tk,1)?"tm":t.d<=addD(tk,6)?"wk":"",lb=[o.noDate?"":dlabel(t.d),t.tm?tlabel(t.tm):""].filter(Boolean).join(" ");
 if(lb||t.r)m.push('<span class="due '+cls+'">'+(lb?ic(I.cal,12)+lb:"")+(t.r?" "+ic(I.rep,12):"")+'</span>')}
@@ -222,6 +223,32 @@ else if(Notification.permission==="granted")h+='<p>Notifications are on. Reminde
 else if(Notification.permission==="denied")h+='<p class="mute">Notifications are blocked for this site in your browser settings. Reminders still pop up on the page while it’s open.</p>';
 else h+='<p>Get a notification when a reminder is due while this page is open in a tab.</p><p><button class="btn" onclick="askNotify()">Allow notifications</button></p>';
 return h+'</div>'}
+
+// Import from Todoist: a backup .zip (one CSV per project) or project CSVs exported as templates.
+function impv(){return head("Import from Todoist")+'<div class="prose"><p><b>Easiest:</b> on todoist.com, open Settings, then Backups, and download the latest backup. Choose that .zip file below.</p><p class="mute">No backups listed? Open each project in Todoist, choose ⋯, Export as template, then Export as file. You can pick several CSV files at once.</p><p><label class="btn" style="cursor:pointer">Choose Todoist file<input type="file" accept=".zip,.csv,application/zip,text/csv" multiple hidden onchange="importFiles(this)"></label></p><p class="mute">Projects, due dates, times, repeats, priorities and descriptions come across. Tasks you already have here aren’t added twice.</p></div>'}
+function importFiles(inp){var fs=[].slice.call(inp.files);inp.value="";if(!fs.length)return;toast("Importing…");
+Promise.all(fs.map(function(f){return f.arrayBuffer().then(function(b){var u=new Uint8Array(b);return u[0]===80&&u[1]===75?unzip(b):[{name:f.name,text:new TextDecoder().decode(u)}]})})).then(function(l){
+var files=[].concat.apply([],l).filter(function(x){return/\.csv$/i.test(x.name)}),n={t:0,p:0,s:0};if(!files.length)throw 0;files.forEach(function(f){impCsv(f,n)});if(!n.t&&!n.s)throw 0;save();go("today");
+toast("Imported "+n.t+" task"+(n.t===1?"":"s")+(n.p?" and "+n.p+" project"+(n.p===1?"":"s"):"")+(n.s?". Skipped "+n.s+" you already had.":""))}).catch(function(){alert("That doesn’t look like a Todoist backup or CSV export.")})}
+// Minimal zip reader; Todoist backups use plain or deflate-compressed entries.
+function unzip(buf){var v=new DataView(buf),u=new Uint8Array(buf),i=buf.byteLength-22,td=new TextDecoder();while(i>=0&&v.getUint32(i,true)!==0x06054b50)i--;if(i<0)return Promise.reject(0);
+var n=v.getUint16(i+10,true),p=v.getUint32(i+16,true),out=[];
+for(var k=0;k<n;k++){var m=v.getUint16(p+10,true),cs=v.getUint32(p+20,true),fl=v.getUint16(p+28,true),xl=v.getUint16(p+30,true),cl=v.getUint16(p+32,true),off=v.getUint32(p+42,true),name=td.decode(u.subarray(p+46,p+46+fl)),st=off+30+v.getUint16(off+26,true)+v.getUint16(off+28,true);
+out.push({name:name,m:m,data:u.slice(st,st+cs)});p+=46+fl+xl+cl}
+return Promise.all(out.filter(function(f){return/\.csv$/i.test(f.name)}).map(function(f){var b=f.m===0?Promise.resolve(f.data.buffer):new Response(new Blob([f.data]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).arrayBuffer();
+return b.then(function(x){return{name:f.name,text:td.decode(x)}})}))}
+function csv(s){s=s.replace(/^﻿/,"");var rows=[],row=[],f="",q=false;for(var i=0;i<s.length;i++){var c=s[i];
+if(q){if(c==='"'){if(s[i+1]==='"'){f+='"';i++}else q=false}else f+=c}else if(c==='"')q=true;else if(c===","){row.push(f);f=""}
+else if(c==="\n"||c==="\r"){if(c==="\r"&&s[i+1]==="\n")i++;row.push(f);rows.push(row);row=[];f=""}else f+=c}if(f||row.length){row.push(f);rows.push(row)}return rows}
+function impCsv(f,n){var r=csv(f.text),h=(r[0]||[]).map(function(x){return x.trim().toUpperCase()}),c=function(k){return h.indexOf(k)};if(c("TYPE")<0||c("CONTENT")<0)return;
+var name=f.name.split("/").pop().replace(/\.csv$/i,"").replace(/\s*\[\d+\]$/,"").trim()||"Imported",pj="inbox",last=null,g=function(row,k){return c(k)>-1?(row[c(k)]||"").trim():""};
+if(!/^inbox$/i.test(name)){var had=S.P.length;pj=projFor(name);if(S.P.length>had)n.p++}
+r.slice(1).forEach(function(row,i){var ty=g(row,"TYPE").toLowerCase(),t=g(row,"CONTENT").replace(/^\*\s+/,"");
+if(ty==="note"&&last&&t){last.n=(last.n?last.n+"\n":"")+t;return}if(ty!=="task"||!t)return;
+if(S.T.some(function(x){return!x.done&&x.pj===pj&&x.t===t})){n.s++;last=null;return}
+var ds=g(row,"DATE"),o=ds?nlp(ds.replace(/every!/ig,"every")):{d:"",tm:"",r:null},nt=g(row,"DESCRIPTION");
+if(/\bevery\b/i.test(ds)&&!o.r)nt=(nt?nt+"\n":"")+"Todoist repeat: "+ds;
+var p=+g(row,"PRIORITY");last={id:uid("t"),t:t,n:nt,d:o.d||"",tm:o.tm||"",r:o.r||null,p:p>=1&&p<=4?p:4,pj:pj,rem:o.tm?0:null,c:Date.now()+i};S.T.push(last);n.t++})}
 
 // Sync uses the same private code as the Recipe Box, so a device synced there is synced here too.
 var SK="recipe-box-sync",code=null,snap=null,syncT=null,syncing=false,again=false,syncMsg="",lastOk=0,pulled=false,joining=null,afterSync="sync";
