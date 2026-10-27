@@ -60,7 +60,7 @@ function wdn(s){return DAYS.indexOf(s.toLowerCase().slice(0,3))}
 function nlp(s){var o={t:" "+s+" ",d:"",tm:"",r:null,p:0,pj:"",hit:[]},t=today();
 function cut(re,f){o.t=o.t.replace(re,function(){var a=[].slice.call(arguments);if(f.apply(null,a)===false)return a[0];o.hit.push(a[0].trim());return" "})}
 function rep(r){if(o.r)return false;o.r=r}
-cut(/\b(?:(\d+)\s*(?:x|times?)|(once|twice))\s*(?:a|per|each|every|\/)\s*week\b/i,function(m,n,w){n=n?+n:w.toLowerCase()==="once"?1:2;if(n<1||n>21)return false;return rep({n:n,u:"goal"})});
+cut(/\b(?:(\d+|one|two|three|four|five|six|seven)\s*(?:x|times?|days?|sessions?)|(once|twice|thrice))\s*(?:(?:a|per|each|every|in\s+a|\/)\s*week|weekly)\b/i,function(m,n,w){var W={one:1,two:2,three:3,four:4,five:5,six:6,seven:7,once:1,twice:2,thrice:3};n=n?(W[n.toLowerCase()]||+n):W[w.toLowerCase()];if(n<1||n>21)return false;return rep({n:n,u:"goal"})});
 cut(/\bevery\s+(weekday|workday)s?\b/i,function(){return rep({n:1,u:"week",days:[1,2,3,4,5]})});
 cut(/\bevery\s+weekends?\b/i,function(){return rep({n:1,u:"week",days:[0,6]})});
 cut(new RegExp("\\b(?:every|each)\\s+(other\\s+|\\d+\\s+weeks?\\s+on\\s+)?("+WD+"(?:\\s*(?:,|and|&)\\s*"+WD+")*)\\b","i"),function(m,n,l){var d=[];l.split(/\s*(?:,|and|&)\s*/i).forEach(function(x){var i=wdn(x);if(i>-1&&d.indexOf(i)<0)d.push(i)});return rep({n:n?(parseInt(n,10)||2):1,u:"week",days:d})});
@@ -149,7 +149,7 @@ return head(title,more)+'<section>'+rows(l)+'</section>'+addRow({pj:pj})+(l.leng
 function searchv(){var s=q.toLowerCase(),l=S.T.filter(function(x){return(x.t+" "+(x.n||"")).toLowerCase().indexOf(s)>-1}).sort(cmp);
 return head("Search")+'<p class="mute">'+l.length+' result'+(l.length===1?"":"s")+' for “'+esc(q)+'”</p>'+l.map(function(t){return t.done?'<div class="task done"><button class="ck on" aria-label="Mark not done: '+esc(t.t)+'" onclick="reopen(\''+t.id+'\')">'+ic(I.check,12)+'</button><button class="tb" onclick="edit(\''+t.id+'\')"><span class="tt">'+esc(t.t)+'</span></button></div>':row(t,{pj:1})}).join("")}
 function goalv(){var l=open().filter(function(t){return t.r&&t.r.u==="goal"}).sort(byc),h=head("Weekly goals");
-h+='<p class="mute">Things to do a set number of times each week, on any days. Tap one to change its goal.</p>';
+h+='<p class="mute">Things to do a set number of times each week, on any days. Tap one to change its goal. Any task shows up here once its Repeat says something like “3 times a week”.</p>';
 h+=l.map(function(t){var c=gcount(t),pc=Math.min(100,Math.round(100*c/t.r.n));return row(t)+'<div class="bar1" role="img" aria-label="'+c+' of '+t.r.n+' done this week"><i style="width:'+pc+'%"></i></div>'}).join("");
 return h+'<button class="addrow" onclick="quick({},\' 3 times a week\')">'+ic(I.plus,18)+'Add weekly goal</button>'+(l.length?"":empty("No weekly goals yet.","Add one, like “Weight training 3 times a week”."))}
 function donev(){var h=head("Completed"),l=S.H.filter(function(x){return x.at>S.hc}),days={},keys=[];
