@@ -124,9 +124,9 @@ return'<a class="home" href="/">'+ic(I.back,15)+'Walden &amp; Finch</a><button c
 function head(title,extra){return'<header class="top"><button class="ib mob" aria-label="Open menu" onclick="side(1)">'+ic(I.menu,22)+'</button><h1>'+title+'</h1>'+(extra||"")+'</header>'}
 function mainHtml(){return view==="inbox"?listv("inbox","Inbox"):view==="project"?(proj(vp)?listv(vp,esc(pname(vp))):(view="today",todayv())):view==="upcoming"?upv():view==="done"?donev():view==="goals"?goalv():view==="search"?searchv():view==="sync"?syncv():view==="reminders"?remv():view==="import"?impv():todayv()}
 function row(t,o){o=o||{};var tk=today(),m=[];
-if(t.d){var cls=t.d<tk?"od":t.d===tk?"td":t.d===addD(tk,1)?"tm":t.d<=addD(tk,6)?"wk":"",lb=[o.noDate?"":dlabel(t.d),t.tm?tlabel(t.tm):""].filter(Boolean).join(" ");
+if(t.d&&!(t.r&&t.r.u==="goal")){var cls=t.d<tk?"od":t.d===tk?"td":t.d===addD(tk,1)?"tm":t.d<=addD(tk,6)?"wk":"",lb=[o.noDate?"":dlabel(t.d),t.tm?tlabel(t.tm):""].filter(Boolean).join(" ");
 if(lb||(t.r&&t.r.u!=="goal"))m.push('<span class="due '+cls+'">'+(lb?ic(I.cal,12)+lb:"")+(t.r&&t.r.u!=="goal"?" "+ic(I.rep,12):"")+'</span>')}
-if(t.r&&t.r.u==="goal"){var gc=gcount(t,view==="goals"?today():t.d);m.push('<span class="goal'+(gc>=t.r.n?" met":"")+'">'+ic(I.rep,12)+gc+'/'+t.r.n+' this week</span>')}
+if(t.r&&t.r.u==="goal"){var gc=gcount(t);m.push('<span class="goal'+(gc>=t.r.n?" met":"")+'">'+ic(gc>=t.r.n?I.check:I.rep,12)+'Done '+gc+' of '+t.r.n+' this week</span>')}
 if(t.d&&t.rem!=null)m.push('<span title="Reminder">'+ic(I.bell,12)+'</span>');
 if(o.pj){var p=proj(t.pj);m.push('<span class="pjn">'+esc(pname(t.pj))+(p?'<i class="dot" style="background:'+p.color+';width:8px;height:8px;margin-right:0"></i>':ic(I.inbox,12))+'</span>')}
 var met=t.r&&t.r.u==="goal"&&gcount(t)>=t.r.n;return'<div class="task" id="t'+t.id+'"><button class="ck'+(met?" on":"")+'" data-p="'+t.p+'" aria-label="Complete: '+esc(t.t)+'" onclick="complete(\''+t.id+'\')">'+ic(I.check,12)+'</button><button class="tb" onclick="edit(\''+t.id+'\')"><span class="tt">'+esc(t.t)+'</span>'+(t.n?'<span class="tn">'+esc(t.n.split("\n")[0])+'</span>':"")+(m.length?'<span class="meta">'+m.join("")+'</span>':"")+'</button></div>'}
