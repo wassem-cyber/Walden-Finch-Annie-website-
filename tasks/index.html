@@ -122,7 +122,7 @@ button.chip{cursor:pointer}
  .bar input,.bar select{flex:1 1 40%;max-width:none}
  .bar .sp{flex-basis:100%;height:0}
  .bar .btn,.bar .ghost:not(.danger){flex:1}
- #modal .mb{align-items:flex-end;padding:0}
+ #modal .mb{align-items:flex-end;padding:0 0 var(--kb,0px)}
  .dlg{border-radius:14px 14px 0 0;max-width:none;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 14px)}
 }
 </style></head><body>
@@ -132,5 +132,5 @@ button.chip{cursor:pointer}
 <button class="fab" aria-label="Add task" onclick="quick()"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
 <div id="modal"></div>
 <div id="toast" role="status" aria-live="polite"></div>
-<script src="tasks.js?v=5"></script>
+<script src="tasks.js?v=6"></script>
 </body></html>
