@@ -126,10 +126,10 @@ function mainHtml(){return view==="inbox"?listv("inbox","Inbox"):view==="project
 function row(t,o){o=o||{};var tk=today(),m=[];
 if(t.d){var cls=t.d<tk?"od":t.d===tk?"td":t.d===addD(tk,1)?"tm":t.d<=addD(tk,6)?"wk":"",lb=[o.noDate?"":dlabel(t.d),t.tm?tlabel(t.tm):""].filter(Boolean).join(" ");
 if(lb||(t.r&&t.r.u!=="goal"))m.push('<span class="due '+cls+'">'+(lb?ic(I.cal,12)+lb:"")+(t.r&&t.r.u!=="goal"?" "+ic(I.rep,12):"")+'</span>')}
-if(t.r&&t.r.u==="goal"){var gc=gcount(t,t.d);m.push('<span class="goal'+(gc>=t.r.n?" met":"")+'">'+ic(I.rep,12)+gc+'/'+t.r.n+' this week</span>')}
+if(t.r&&t.r.u==="goal"){var gc=gcount(t,view==="goals"?today():t.d);m.push('<span class="goal'+(gc>=t.r.n?" met":"")+'">'+ic(I.rep,12)+gc+'/'+t.r.n+' this week</span>')}
 if(t.d&&t.rem!=null)m.push('<span title="Reminder">'+ic(I.bell,12)+'</span>');
 if(o.pj){var p=proj(t.pj);m.push('<span class="pjn">'+esc(pname(t.pj))+(p?'<i class="dot" style="background:'+p.color+';width:8px;height:8px;margin-right:0"></i>':ic(I.inbox,12))+'</span>')}
-return'<div class="task" id="t'+t.id+'"><button class="ck" data-p="'+t.p+'" aria-label="Complete: '+esc(t.t)+'" onclick="complete(\''+t.id+'\')">'+ic(I.check,12)+'</button><button class="tb" onclick="edit(\''+t.id+'\')"><span class="tt">'+esc(t.t)+'</span>'+(t.n?'<span class="tn">'+esc(t.n.split("\n")[0])+'</span>':"")+(m.length?'<span class="meta">'+m.join("")+'</span>':"")+'</button></div>'}
+var met=t.r&&t.r.u==="goal"&&gcount(t)>=t.r.n;return'<div class="task" id="t'+t.id+'"><button class="ck'+(met?" on":"")+'" data-p="'+t.p+'" aria-label="Complete: '+esc(t.t)+'" onclick="complete(\''+t.id+'\')">'+ic(I.check,12)+'</button><button class="tb" onclick="edit(\''+t.id+'\')"><span class="tt">'+esc(t.t)+'</span>'+(t.n?'<span class="tn">'+esc(t.n.split("\n")[0])+'</span>':"")+(m.length?'<span class="meta">'+m.join("")+'</span>':"")+'</button></div>'}
 function rows(l,o){return l.map(function(t){return row(t,o)}).join("")}
 function sec(title,l,right,o){return'<section><h2 class="sec">'+title+(right||"")+'</h2>'+rows(l,o)+'</section>'}
 function addRow(pre){return'<button class="addrow" onclick="quick({d:\''+(pre.d||"")+'\',pj:\''+(pre.pj||"")+'\'})">'+ic(I.plus,18)+'Add task</button>'}
@@ -161,7 +161,7 @@ return h+'<p style="margin-top:20px"><button class="ghost" onclick="clearDone()"
 
 // Actions
 function complete(id){var t=task(id);if(!t)return;var before=JSON.stringify(t),now=Date.now(),hk={id:t.id,t:t.t,at:now,pj:t.pj,r:t.r?1:0};S.H.unshift(hk);
-var el=document.getElementById("t"+id);if(el){el.querySelector(".ck").classList.add("on");el.classList.add("gone")}
+var el=document.getElementById("t"+id),stay=view==="goals"&&t.r&&t.r.u==="goal";if(el){el.querySelector(".ck").classList.add("on");if(!stay)el.classList.add("gone")}
 var msg;if(t.r&&t.r.u==="goal"){var gc=gcount(t);t.d=goalDue(t);msg=gc+" of "+t.r.n+" this week"+(gc>=t.r.n?". Goal met! Back on Monday.":"")}
 else if(t.r&&t.d){var n=step(t.d,t.r),tk=today(),g=0;while(n<tk&&g++<2000)n=step(n,t.r);t.d=n;msg="Done. Next: "+dlabel(n)+(t.tm?" "+tlabel(t.tm):"")}
 else{t.done=true;t.dt=now;msg="1 task completed"}
