@@ -13,7 +13,7 @@ check:'<path d="M20 6 9 17l-5-5"/>',done:'<circle cx="12" cy="12" r="10"/><path 
 menu:'<path d="M4 6h16M4 12h16M4 18h16"/>',search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
 sync:'<path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M3 21v-5h5"/>',
 flag:'<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/>',more:'<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>',
-back:'<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',imp:'<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>',book:'<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>'};
+back:'<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',goal:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',imp:'<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>',book:'<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>'};
 function ic(p,s){s=s||18;return'<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'}
 function flag(p,s){return'<svg width="'+(s||16)+'" height="'+(s||16)+'" viewBox="0 0 24 24" fill="'+(p<4?PC[p]:"none")+'" stroke="'+PC[p]+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+I.flag+'</svg>'}
 function todayIcon(){return'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+I.cal+'<text x="12" y="19" text-anchor="middle" font-size="9" font-weight="700" fill="currentColor" stroke="none" font-family="system-ui,sans-serif">'+new Date().getDate()+'</text></svg>'}
@@ -42,7 +42,12 @@ return addM(k,(r.u==="month"?1:12)*r.n,r.dom)}
 function firstOn(r,from){if(r.u==="week"&&r.days&&r.days.length){for(var i=0;i<7;i++){var x=addD(from,i);if(r.days.indexOf(dow(x))>-1)return x}}
 if(r.u==="month"&&r.dom){var d=kd(from),c=addM(dk(new Date(d.getFullYear(),d.getMonth(),1)),0,r.dom);return c>=from?c:addM(c,1,r.dom)}return from}
 function mon1(d){return(d+6)%7}
-function rtext(r){if(!r)return"";var U=r.u;
+// Weekly goals ({u:"goal", n}) have no fixed days: the task stays in Today until it's been done n times this week.
+function wk0(k){var i=0;while(dow(addD(k,-i))!==1)i++;return addD(k,-i)}
+function gcount(t,k){var a=kd(wk0(k||today())).getTime(),b=kd(addD(wk0(k||today()),7)).getTime();return S.H.filter(function(h){return h.id===t.id&&h.at>=a&&h.at<b}).length}
+function goalDue(t){var tk=today();return gcount(t)>=t.r.n?addD(wk0(tk),7):tk}
+function goals(){S.T.forEach(function(t){if(!t.done&&t.r&&t.r.u==="goal"){var d=goalDue(t);if(t.d!==d)t.d=d}})}
+function rtext(r){if(!r)return"";var U=r.u;if(U==="goal")return r.n===1?"once a week":r.n===2?"twice a week":r.n+" times a week";
 if(U==="week"&&r.days&&r.days.length){var s=r.days.slice().sort(function(a,b){return mon1(a)-mon1(b)}),j=s.slice().sort().join("");
 if(r.n===1&&j==="12345")return"every weekday";if(r.n===1&&j==="06")return"every weekend";
 return"every "+(r.n>1?r.n+" weeks on ":"")+s.map(function(d){return DN[d]}).join(", ")}
@@ -55,6 +60,7 @@ function wdn(s){return DAYS.indexOf(s.toLowerCase().slice(0,3))}
 function nlp(s){var o={t:" "+s+" ",d:"",tm:"",r:null,p:0,pj:"",hit:[]},t=today();
 function cut(re,f){o.t=o.t.replace(re,function(){var a=[].slice.call(arguments);if(f.apply(null,a)===false)return a[0];o.hit.push(a[0].trim());return" "})}
 function rep(r){if(o.r)return false;o.r=r}
+cut(/\b(?:(\d+)\s*(?:x|times?)|(once|twice))\s*(?:a|per|each|every|\/)\s*week\b/i,function(m,n,w){n=n?+n:w.toLowerCase()==="once"?1:2;if(n<1||n>21)return false;return rep({n:n,u:"goal"})});
 cut(/\bevery\s+(weekday|workday)s?\b/i,function(){return rep({n:1,u:"week",days:[1,2,3,4,5]})});
 cut(/\bevery\s+weekends?\b/i,function(){return rep({n:1,u:"week",days:[0,6]})});
 cut(new RegExp("\\b(?:every|each)\\s+(other\\s+|\\d+\\s+weeks?\\s+on\\s+)?("+WD+"(?:\\s*(?:,|and|&)\\s*"+WD+")*)\\b","i"),function(m,n,l){var d=[];l.split(/\s*(?:,|and|&)\s*/i).forEach(function(x){var i=wdn(x);if(i>-1&&d.indexOf(i)<0)d.push(i)});return rep({n:n?(parseInt(n,10)||2):1,u:"week",days:d})});
@@ -105,21 +111,22 @@ p={id:uid("p"),name:name.replace(/[_-]/g," "),color:COL[S.P.length%COL.length],c
 function go(v,p){view=v;vp=p||"";if(v!=="search"){q=""}side(0);draw();window.scrollTo(0,0)}
 function side(o){document.body.classList.toggle("so",!!o)}
 function drawSide(){var a=document.activeElement;if(!a||a.id!=="sq")document.getElementById("side").innerHTML=sideHtml()}
-function draw(){drawSide();document.getElementById("app").innerHTML=mainHtml();lastDay=today()}
+function draw(){goals();drawSide();document.getElementById("app").innerHTML=mainHtml();lastDay=today()}
 function sideHtml(){var c={inbox:0,today:0},t=today();open().forEach(function(x){c[x.pj]=(c[x.pj]||0)+1;if(x.d&&x.d<=t)c.today++});
 function it(v,p,icon,label,n){var on=view===v&&vp===(p||"");return'<button class="nv'+(on?" on":"")+'" onclick="go(\''+v+'\',\''+(p||"")+'\')"'+(on?' aria-current="page"':"")+'>'+icon+'<span>'+label+'</span>'+(n?'<em>'+n+'</em>':"")+'</button>'}
 return'<a class="home" href="/">'+ic(I.back,15)+'Walden &amp; Finch</a><button class="addb" onclick="side(0);quick()"><span class="plus">'+ic(I.plus,15)+'</span>Add task</button>'
 +'<label class="srch">'+ic(I.search,17)+'<input id="sq" type="search" placeholder="Search" aria-label="Search tasks" value="'+esc(q)+'" oninput="q=this.value;view=q?\'search\':\'today\';vp=\'\';document.getElementById(\'app\').innerHTML=mainHtml()" onblur="setTimeout(drawSide,250)"></label>'
-+it("inbox","",ic(I.inbox),"Inbox",c.inbox)+it("today","",todayIcon(),"Today",c.today)+it("upcoming","",ic(I.up),"Upcoming")+it("done","",ic(I.done),"Completed")
++it("inbox","",ic(I.inbox),"Inbox",c.inbox)+it("today","",todayIcon(),"Today",c.today)+it("upcoming","",ic(I.up),"Upcoming")+it("goals","",ic(I.goal),"Weekly goals")+it("done","",ic(I.done),"Completed")
 +'<div class="sh"><span>My projects</span><button class="ib" aria-label="Add project" onclick="addProj()">'+ic(I.plus,16)+'</button></div>'
 +S.P.slice().sort(byc).map(function(p){return it("project",p.id,'<i class="dot" style="background:'+p.color+'"></i>',esc(p.name),c[p.id])}).join("")
 +(S.P.length?"":'<p class="mute" style="padding:0 8px;margin:4px 0;font-size:.85rem">Add one with + or type #Name in a task.</p>')
 +'<div class="sbot">'+it("reminders","",ic(I.bell),"Reminders")+it("sync","",ic(I.sync),"Sync devices")+it("import","",ic(I.imp),"Import from Todoist")+'<a class="nv" href="/recipes/">'+ic(I.book)+'<span>Recipe Box</span></a></div>'}
 function head(title,extra){return'<header class="top"><button class="ib mob" aria-label="Open menu" onclick="side(1)">'+ic(I.menu,22)+'</button><h1>'+title+'</h1>'+(extra||"")+'</header>'}
-function mainHtml(){return view==="inbox"?listv("inbox","Inbox"):view==="project"?(proj(vp)?listv(vp,esc(pname(vp))):(view="today",todayv())):view==="upcoming"?upv():view==="done"?donev():view==="search"?searchv():view==="sync"?syncv():view==="reminders"?remv():view==="import"?impv():todayv()}
+function mainHtml(){return view==="inbox"?listv("inbox","Inbox"):view==="project"?(proj(vp)?listv(vp,esc(pname(vp))):(view="today",todayv())):view==="upcoming"?upv():view==="done"?donev():view==="goals"?goalv():view==="search"?searchv():view==="sync"?syncv():view==="reminders"?remv():view==="import"?impv():todayv()}
 function row(t,o){o=o||{};var tk=today(),m=[];
 if(t.d){var cls=t.d<tk?"od":t.d===tk?"td":t.d===addD(tk,1)?"tm":t.d<=addD(tk,6)?"wk":"",lb=[o.noDate?"":dlabel(t.d),t.tm?tlabel(t.tm):""].filter(Boolean).join(" ");
-if(lb||t.r)m.push('<span class="due '+cls+'">'+(lb?ic(I.cal,12)+lb:"")+(t.r?" "+ic(I.rep,12):"")+'</span>')}
+if(lb||(t.r&&t.r.u!=="goal"))m.push('<span class="due '+cls+'">'+(lb?ic(I.cal,12)+lb:"")+(t.r&&t.r.u!=="goal"?" "+ic(I.rep,12):"")+'</span>')}
+if(t.r&&t.r.u==="goal"){var gc=gcount(t,t.d);m.push('<span class="goal'+(gc>=t.r.n?" met":"")+'">'+ic(I.rep,12)+gc+'/'+t.r.n+' this week</span>')}
 if(t.d&&t.rem!=null)m.push('<span title="Reminder">'+ic(I.bell,12)+'</span>');
 if(o.pj){var p=proj(t.pj);m.push('<span class="pjn">'+esc(pname(t.pj))+(p?'<i class="dot" style="background:'+p.color+';width:8px;height:8px;margin-right:0"></i>':ic(I.inbox,12))+'</span>')}
 return'<div class="task" id="t'+t.id+'"><button class="ck" data-p="'+t.p+'" aria-label="Complete: '+esc(t.t)+'" onclick="complete(\''+t.id+'\')">'+ic(I.check,12)+'</button><button class="tb" onclick="edit(\''+t.id+'\')"><span class="tt">'+esc(t.t)+'</span>'+(t.n?'<span class="tn">'+esc(t.n.split("\n")[0])+'</span>':"")+(m.length?'<span class="meta">'+m.join("")+'</span>':"")+'</button></div>'}
@@ -141,6 +148,10 @@ function listv(pj,title){var l=open().filter(function(x){return x.pj===pj}).sort
 return head(title,more)+'<section>'+rows(l)+'</section>'+addRow({pj:pj})+(l.length?"":empty(pj==="inbox"?"Your inbox is clear.":"No tasks here yet.",pj==="inbox"?"New tasks land here unless you pick a project.":"Add one, or type #"+esc(pname(pj).replace(/\s+/g,""))+" in any task."))}
 function searchv(){var s=q.toLowerCase(),l=S.T.filter(function(x){return(x.t+" "+(x.n||"")).toLowerCase().indexOf(s)>-1}).sort(cmp);
 return head("Search")+'<p class="mute">'+l.length+' result'+(l.length===1?"":"s")+' for “'+esc(q)+'”</p>'+l.map(function(t){return t.done?'<div class="task done"><button class="ck on" aria-label="Mark not done: '+esc(t.t)+'" onclick="reopen(\''+t.id+'\')">'+ic(I.check,12)+'</button><button class="tb" onclick="edit(\''+t.id+'\')"><span class="tt">'+esc(t.t)+'</span></button></div>':row(t,{pj:1})}).join("")}
+function goalv(){var l=open().filter(function(t){return t.r&&t.r.u==="goal"}).sort(byc),h=head("Weekly goals");
+h+='<p class="mute">Things to do a set number of times each week, on any days. Tap one to change its goal.</p>';
+h+=l.map(function(t){var c=gcount(t),pc=Math.min(100,Math.round(100*c/t.r.n));return row(t)+'<div class="bar1" role="img" aria-label="'+c+' of '+t.r.n+' done this week"><i style="width:'+pc+'%"></i></div>'}).join("");
+return h+'<button class="addrow" onclick="quick({},\' 3 times a week\')">'+ic(I.plus,18)+'Add weekly goal</button>'+(l.length?"":empty("No weekly goals yet.","Add one, like “Weight training 3 times a week”."))}
 function donev(){var h=head("Completed"),l=S.H.filter(function(x){return x.at>S.hc}),days={},keys=[];
 l.forEach(function(x){var k=dk(new Date(x.at));if(!days[k]){days[k]=[];keys.push(k)}days[k].push(x)});
 if(!l.length)return h+empty("No completed tasks yet.","Tasks you check off show up here.");
@@ -151,7 +162,8 @@ return h+'<p style="margin-top:20px"><button class="ghost" onclick="clearDone()"
 // Actions
 function complete(id){var t=task(id);if(!t)return;var before=JSON.stringify(t),now=Date.now(),hk={id:t.id,t:t.t,at:now,pj:t.pj,r:t.r?1:0};S.H.unshift(hk);
 var el=document.getElementById("t"+id);if(el){el.querySelector(".ck").classList.add("on");el.classList.add("gone")}
-var msg;if(t.r&&t.d){var n=step(t.d,t.r),tk=today(),g=0;while(n<tk&&g++<2000)n=step(n,t.r);t.d=n;msg="Done. Next: "+dlabel(n)+(t.tm?" "+tlabel(t.tm):"")}
+var msg;if(t.r&&t.r.u==="goal"){var gc=gcount(t);t.d=goalDue(t);msg=gc+" of "+t.r.n+" this week"+(gc>=t.r.n?". Goal met! Back on Monday.":"")}
+else if(t.r&&t.d){var n=step(t.d,t.r),tk=today(),g=0;while(n<tk&&g++<2000)n=step(n,t.r);t.d=n;msg="Done. Next: "+dlabel(n)+(t.tm?" "+tlabel(t.tm):"")}
 else{t.done=true;t.dt=now;msg="1 task completed"}
 save();setTimeout(draw,el?260:0);
 toast(msg,function(){var i=S.T.indexOf(task(id));if(i>-1)S.T[i]=JSON.parse(before);S.H=S.H.filter(function(x){return x!==hk});S.del["h:"+hk.id+"@"+hk.at]=Date.now();save();draw()})}
@@ -169,9 +181,9 @@ function modal(h,label){document.getElementById("modal").innerHTML='<div class="
 function closeM(){document.getElementById("modal").innerHTML="";cur=null}
 function opts(list,val){return list.map(function(o){return'<option value="'+esc(o[0])+'"'+(String(o[0])===String(val)?" selected":"")+'>'+esc(o[1])+'</option>'}).join("")}
 function projOpts(val){return opts([["inbox","Inbox"]].concat(S.P.slice().sort(byc).map(function(p){return[p.id,p.name]})),val)}
-function quick(pre){pre=pre||{};qa={d:pre.d||(view==="today"?today():""),pj:pre.pj||(view==="project"||view==="inbox"?vp||"inbox":"inbox")};
+function quick(pre,fill){pre=pre||{};qa={d:pre.d||(view==="today"?today():""),pj:pre.pj||(view==="project"||view==="inbox"?vp||"inbox":"inbox")};
 modal('<form onsubmit="event.preventDefault();qadd()"><input id="qi" class="qi" placeholder="e.g. Trash every Tue 8pm" autocomplete="off" enterkeyhint="done" oninput="qprev()"><textarea id="qn" class="qn" rows="1" placeholder="Description"></textarea><div id="qp" class="chips"></div><div class="bar"><input id="qd" type="date" aria-label="Due date" value="'+qa.d+'" onchange="qprev()"><select id="qpj" aria-label="Project">'+projOpts(qa.pj)+'</select><span class="sp"></span><button type="button" class="ghost" onclick="closeM()">Cancel</button><button class="btn" id="qb" disabled>Add task</button></div><p class="hint">Type it naturally: tomorrow, fri 5pm, Nov 3, every weekday, every 2 weeks, every 1st, p1 for priority, #Errands for a project.</p></form>',"Add task");
-qprev();setTimeout(function(){var e=document.getElementById("qi");if(e)e.focus()},30)}
+var qi=document.getElementById("qi");if(fill)qi.value=fill;qprev();qi.focus();if(fill)qi.setSelectionRange(0,0)}
 function qprev(){var v=document.getElementById("qi").value,o=nlp(v),c=[],d=o.d||document.getElementById("qd").value;
 if(d)c.push(ic(I.cal,13)+dlabel(d)+(o.tm?" "+tlabel(o.tm):""));if(o.r)c.push(ic(I.rep,13)+rtext(o.r));if(o.p)c.push(flag(o.p,13)+"P"+o.p);if(o.pj)c.push("#"+esc(o.pj));
 document.getElementById("qp").innerHTML=c.map(function(x){return'<span class="chip hl">'+x+'</span>'}).join("");document.getElementById("qb").disabled=!o.t}
@@ -185,7 +197,7 @@ var pr=[1,2,3,4].map(function(p){return'<label><input type="radio" name="pr" val
 modal('<form onsubmit="event.preventDefault();saveEd()"><div class="edtop"><button type="button" class="ck" data-p="'+t.p+'" aria-label="Complete" onclick="var i=cur;closeM();complete(i)">'+ic(I.check,12)+'</button><div style="flex:1"><input id="et" class="qi" value="'+esc(t.t)+'" aria-label="Task name"><textarea id="en" class="qn" rows="2" placeholder="Description">'+esc(t.n||"")+'</textarea></div></div>'
 +'<div class="fld"><label>Date<input id="ed" type="date" value="'+esc(t.d)+'"></label><label>Time<input id="em" type="time" value="'+esc(t.tm)+'"></label>'
 +'<div class="full chips" style="margin:0">'+[["Today",tk],["Tomorrow",addD(tk,1)],["This weekend",we],["Next week",nw],["No date",""]].map(function(x){return'<button type="button" class="chip" onclick="document.getElementById(\'ed\').value=\''+x[1]+'\'">'+x[0]+'</button>'}).join("")+'</div>'
-+'<label class="full">Repeat<input id="er" list="rl" placeholder="Doesn’t repeat" value="'+esc(rtext(t.r))+'" oninput="rprev()" autocomplete="off"><span id="erp" class="hint" style="margin:0;font-weight:400"></span></label><div class="full wdays" role="group" aria-label="Repeat on these days every week">'+[1,2,3,4,5,6,0].map(function(d){return'<button type="button" class="wd" data-d="'+d+'" aria-pressed="false" aria-label="'+DN[d]+'" onclick="pickDay('+d+')">'+DN[d].slice(0,3)+'</button>'}).join("")+'</div><datalist id="rl">'+["every day","every weekday","every week","every 2 weeks","every month","every 3 months","every year","every Monday","every Saturday, Sunday"].map(function(x){return'<option value="'+x+'">'}).join("")+'</datalist>'
++'<label class="full">Repeat<input id="er" list="rl" placeholder="Doesn’t repeat" value="'+esc(rtext(t.r))+'" oninput="rprev()" autocomplete="off"><span id="erp" class="hint" style="margin:0;font-weight:400"></span></label><div class="full wdays" role="group" aria-label="Repeat on these days every week">'+[1,2,3,4,5,6,0].map(function(d){return'<button type="button" class="wd" data-d="'+d+'" aria-pressed="false" aria-label="'+DN[d]+'" onclick="pickDay('+d+')">'+DN[d].slice(0,3)+'</button>'}).join("")+'</div>'+(t.r&&t.r.u==="goal"?'<p class="full hint" style="margin:-4px 0 0">This week: '+gcount(t)+' of '+t.r.n+' · Last week: '+gcount(t,addD(tk,-7))+'</p>':"")+'<datalist id="rl">'+["every day","every weekday","every week","every 2 weeks","every month","every 3 months","every year","3 times a week","every Monday","every Saturday, Sunday"].map(function(x){return'<option value="'+x+'">'}).join("")+'</datalist>'
 +'<div class="full"><label>Priority</label><div class="pri" style="margin-top:4px">'+pr+'</div></div>'
 +'<label>Project<select id="ep">'+projOpts(t.pj)+'</select></label><label>Reminder<select id="ea">'+opts(REM,t.rem==null?"":t.rem)+'</select></label></div>'
 +'<div class="bar"><button type="button" class="ghost danger" onclick="delTask()">Delete</button><span class="sp"></span><button type="button" class="ghost" onclick="closeM()">Cancel</button><button class="btn">Save</button></div></form>',"Edit task");rprev()}

@@ -23,7 +23,7 @@ export function buildICS(data, now = Date.now()) {
   const L = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Walden & Finch//Tasks//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
     "X-WR-CALNAME:Tasks", "REFRESH-INTERVAL;VALUE=DURATION:PT1H", "X-PUBLISHED-TTL:PT1H"];
   (data.T || []).forEach((t) => {
-    if (t.done || !/^\d{4}-\d{2}-\d{2}$/.test(t.d || "")) return;
+    if (t.done || !/^\d{4}-\d{2}-\d{2}$/.test(t.d || "") || (t.r && t.r.u === "goal")) return;
     L.push("BEGIN:VEVENT", "UID:" + t.id + "@waldenandfinch", "DTSTAMP:" + stamp(t.u || now) + "Z", "SUMMARY:" + text(t.t));
     if (t.n) L.push("DESCRIPTION:" + text(t.n));
     const [y, m, d] = t.d.split("-").map(Number);
