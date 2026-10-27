@@ -95,6 +95,9 @@ button.chip{cursor:pointer}
 .pri{display:flex;gap:6px}
 .pri label{flex-direction:row;cursor:pointer}
 .pri input{position:absolute;opacity:0;width:1px;height:1px}
+.wdays{display:flex;gap:6px;margin-top:-4px}
+.wd{flex:1;min-width:0;border:1px solid #ddd;background:#fff;border-radius:6px;padding:7px 0;font-weight:600;font-size:.82rem;cursor:pointer}
+.wd[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#fff}
 .pri span{display:inline-flex;align-items:center;gap:4px;border:1px solid #ddd;border-radius:6px;padding:7px 10px;font-weight:600;color:var(--ink)}
 .pri input:checked+span{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc)}
 .pri input:focus-visible+span{outline:2px solid var(--acc)}
