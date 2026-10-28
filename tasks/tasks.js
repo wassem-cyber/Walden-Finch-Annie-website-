@@ -120,7 +120,7 @@ return'<a class="home" href="/">'+ic(I.back,15)+'Walden &amp; Finch</a><button c
 +'<div class="sh"><span>My projects</span><button class="ib" aria-label="Add project" onclick="addProj()">'+ic(I.plus,16)+'</button></div>'
 +S.P.slice().sort(byc).map(function(p){return it("project",p.id,'<i class="dot" style="background:'+p.color+'"></i>',esc(p.name),c[p.id])}).join("")
 +(S.P.length?"":'<p class="mute" style="padding:0 8px;margin:4px 0;font-size:.85rem">Add one with + or type #Name in a task.</p>')
-+'<div class="sbot">'+it("reminders","",ic(I.bell),"Reminders")+it("sync","",ic(I.sync),"Sync devices")+it("import","",ic(I.imp),"Import from Todoist")+'<a class="nv" href="/recipes/">'+ic(I.book)+'<span>Recipe Box</span></a></div>'}
++'<div class="sbot">'+it("reminders","",ic(I.bell),"Reminders")+it("sync","",ic(I.sync),"Sync devices")+it("import","",ic(I.imp),"Import from Todoist")+(location.origin===PREVIEW?"":'<button class="nv" onclick="side(0);bringOver()">'+ic(I.imp)+'<span>Bring tasks from test site</span></button>')+'<a class="nv" href="/recipes/">'+ic(I.book)+'<span>Recipe Box</span></a></div>'}
 function head(title,extra){return'<header class="top"><button class="ib mob" aria-label="Open menu" onclick="side(1)">'+ic(I.menu,22)+'</button><h1>'+title+'</h1>'+(extra||"")+'</header>'}
 function mainHtml(){return view==="inbox"?listv("inbox","Inbox"):view==="project"?(proj(vp)?listv(vp,esc(pname(vp))):(view="today",todayv())):view==="upcoming"?upv():view==="done"?donev():view==="goals"?goalv():view==="search"?searchv():view==="sync"?syncv():view==="reminders"?remv():view==="import"?impv():todayv()}
 function row(t,o){o=o||{};var tk=today(),m=[];
@@ -134,9 +134,14 @@ function rows(l,o){return l.map(function(t){return row(t,o)}).join("")}
 function sec(title,l,right,o){return'<section><h2 class="sec">'+title+(right||"")+'</h2>'+rows(l,o)+'</section>'}
 function addRow(pre){return'<button class="addrow" onclick="quick({d:\''+(pre.d||"")+'\',pj:\''+(pre.pj||"")+'\'})">'+ic(I.plus,18)+'Add task</button>'}
 function empty(b,s){return'<div class="empty"><b>'+b+'</b>'+s+'</div>'}
+// One-time helper: tasks imported on the test (preview) site live in that site's browser storage.
+// Opening the preview with this device's sync code makes it upload them, and this page pulls them in.
+var PREVIEW="https://deploy-preview-28--waldenandfinch.netlify.app";
+function moveBanner(){var done=false;try{done=!!localStorage.getItem("tasks-moved")}catch(e){}if(done||location.origin===PREVIEW)return"";return'<div class="nut" style="border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-top:12px"><b>Imported your tasks on the test site?</b><p class="mute" style="margin:4px 0 10px">Tap below. The test site opens and sends your tasks here, then come back to this tab.</p><button class="btn" onclick="bringOver()">Bring my tasks over</button></div>'}
+function bringOver(){if(!code)setCode(newCode());var a=document.createElement("a");a.href=PREVIEW+"/tasks/#sync="+code;a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove();try{localStorage.setItem("tasks-moved","1")}catch(e){}toast("Come back here once the test site opens")}
 function todayv(){var t=today(),o=open(),od=o.filter(function(x){return x.d&&x.d<t}).sort(cmp),td=o.filter(function(x){return x.d===t}).sort(cmp),n=od.length+td.length;
 var h=head("Today",n?'<span class="sub">'+n+' task'+(n>1?"s":"")+'</span>':"");
-if(od.length)h+=sec('<span class="od">Overdue</span>',od,'<button class="lnk" onclick="resched()">Reschedule to today</button>',{pj:1});
+h+=moveBanner();if(od.length)h+=sec('<span class="od">Overdue</span>',od,'<button class="lnk" onclick="resched()">Reschedule to today</button>',{pj:1});
 h+=sec(dlong(t),td,"",{pj:1,noDate:1})+addRow({d:t});
 if(!n)h+=empty("Nothing due today. Enjoy your day.","Tap + to add a task. Try “Water plants every Sunday” or “Pay rent every 1st”.");return h}
 function upv(){var t=today(),o=open().filter(function(x){return x.d}),od=o.filter(function(x){return x.d<t}).sort(cmp),h=head("Upcoming");
