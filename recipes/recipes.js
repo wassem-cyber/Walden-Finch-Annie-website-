@@ -1,5 +1,583 @@
 var SEED=[
  {
+  "id": "r1793494445712",
+  "img": "img/greek-yogurt-raspberry-loaf.jpg",
+  "ing": [
+   {
+    "q": null,
+    "t": "Olive oil spray"
+   },
+   {
+    "q": 1.5,
+    "t": "cups fresh raspberries"
+   },
+   {
+    "q": 1.75,
+    "t": "cups all-purpose flour"
+   },
+   {
+    "q": 1.5,
+    "t": "tsp baking powder"
+   },
+   {
+    "q": 0.5,
+    "t": "tsp baking soda"
+   },
+   {
+    "q": 0.5,
+    "t": "tsp kosher salt"
+   },
+   {
+    "q": 0.75,
+    "t": "cup turbinado sugar"
+   },
+   {
+    "q": 3,
+    "t": "tbsp unsalted butter, at room temperature"
+   },
+   {
+    "q": 2,
+    "t": "large eggs"
+   },
+   {
+    "q": 3,
+    "t": "large egg whites"
+   },
+   {
+    "q": 1,
+    "t": "tsp vanilla extract"
+   },
+   {
+    "q": null,
+    "t": "Grated zest from 1 lemon"
+   },
+   {
+    "q": 1,
+    "t": "cup nonfat plain Greek yogurt"
+   }
+  ],
+  "nut": {
+   "cal": "174",
+   "carb": "29",
+   "fat": "4",
+   "pro": "6"
+  },
+  "servings": 12,
+  "steps": [
+   "Preheat the oven to 350°F and spray a 5 × 9-inch loaf pan with oil.",
+   "In a medium bowl, toss the berries with 1 tablespoon of the flour and set aside.",
+   "In a large bowl, mix the remaining flour with the baking powder, baking soda, and salt.",
+   "Set aside 1 tablespoon of the sugar. In another medium bowl, use an electric mixer on medium speed to beat the butter and remaining sugar until fluffy, about 2 minutes.",
+   "In a small bowl, whisk the eggs, egg whites, and vanilla until smooth. Add to the butter-sugar mixture and mix on medium-high speed until combined, about 30 seconds. Add the lemon zest and mix briefly, about 10 seconds. Add the flour mixture and mix on low speed until combined, about 30 seconds. Fold in the yogurt with a spatula, then fold in the raspberries. Pour into the prepared pan and sprinkle with the reserved sugar.",
+   "Bake until the top is golden and a toothpick inserted in the center comes out clean, 50 to 55 minutes. Let cool for 1 to 2 hours before eating.",
+   "Meal prep: Let the loaf cool, then cut into slices and wrap each slice individually in plastic wrap. Transfer the wrapped slices to a large zip-top storage bag and store."
+  ],
+  "storage": "Fridge, up to 4 days. Freezer, up to 3 months (to reheat, microwave for a few seconds until warm, or thaw in the fridge).",
+  "tags": [
+   "vegetarian",
+   "freezer friendly",
+   "breakfast"
+  ],
+  "title": "Greek Yogurt Raspberry Loaf",
+  "ts": 1793494445712
+ },
+ {
+  "id": "r1793493688988",
+  "img": "img/lemon-blueberry-buttermilk-sheet-pan-pancakes.jpg",
+  "ing": [
+   {
+    "q": null,
+    "t": "Cooking spray"
+   },
+   {
+    "q": 1.5,
+    "t": "cups unbleached all-purpose flour"
+   },
+   {
+    "q": 0.5,
+    "t": "cup white whole wheat flour"
+   },
+   {
+    "q": 2,
+    "t": "tbsp granulated sugar"
+   },
+   {
+    "q": 2,
+    "t": "tsp baking powder"
+   },
+   {
+    "q": 1,
+    "t": "tsp baking soda"
+   },
+   {
+    "q": 1,
+    "t": "tsp kosher salt"
+   },
+   {
+    "q": 2,
+    "t": "tbsp unsalted butter, melted and cooled slightly"
+   },
+   {
+    "q": 2,
+    "t": "cups low-fat (1%) buttermilk"
+   },
+   {
+    "q": 2,
+    "t": "large eggs"
+   },
+   {
+    "q": null,
+    "t": "Juice and grated zest from 1 medium lemon"
+   },
+   {
+    "q": 2,
+    "t": "tsp vanilla extract"
+   },
+   {
+    "q": 1.5,
+    "t": "cups blueberries"
+   }
+  ],
+  "nut": {
+   "cal": "214",
+   "carb": "35",
+   "fat": "5",
+   "pro": "7"
+  },
+  "servings": 8,
+  "steps": [
+   "Preheat the oven to 425°F. Spray a rimmed 13 × 18-inch sheet pan with cooking spray (this helps the parchment stay put). Cut parchment to cover the bottom completely, press it in, then spray the parchment and the sides of the pan.",
+   "In a medium bowl, whisk together the flours, sugar, baking powder, baking soda, and salt. In another medium bowl, whisk together the butter, buttermilk, eggs, lemon juice and zest, vanilla, and 1/4 cup water until thoroughly combined.",
+   "Add the wet ingredients to the dry and whisk until just combined. Don’t overmix; a few lumps are fine.",
+   "Gently fold in the blueberries with a spatula.",
+   "Pour the batter into the prepared pan and spread evenly with a spatula. Tap the pan on the counter a few times to settle the batter. Bake, rotating the pan halfway through, until golden and set, about 15 minutes.",
+   "Let cool for 5 minutes in the pan. Set a large cutting board over the pan and flip the pancake onto it. Cut into 16 squares. Add toppings as desired (confectioners’ sugar, pure maple syrup, honey, or light whipped cream) and serve.",
+   "Meal Prep: Cool completely before moving to an airtight container. To reheat from the fridge, microwave for 40 seconds, flipping halfway through. To reheat from frozen, microwave for 45 seconds, flip, and cook for another 45 seconds, or until heated through."
+  ],
+  "storage": "Fridge, up to 4 days. Freezer, up to 2 months.",
+  "tags": [
+   "vegetarian",
+   "freezer friendly",
+   "breakfast"
+  ],
+  "title": "Lemon Blueberry Buttermilk Sheet Pan Pancakes",
+  "ts": 1793493688988
+ },
+ {
+  "id": "r1793451000000",
+  "img": "img/baked-spinach-stuffed-shells.jpg",
+  "ing": [
+   {
+    "q": null,
+    "t": "Kosher salt"
+   },
+   {
+    "q": 9,
+    "t": "oz jumbo pasta shells (27 shells)"
+   },
+   {
+    "q": 2,
+    "t": "large eggs"
+   },
+   {
+    "q": 1,
+    "t": "(15-ounce) container part-skim ricotta cheese"
+   },
+   {
+    "q": 1,
+    "t": "(8-ounce) package frozen chopped spinach, thawed and squeezed well"
+   },
+   {
+    "q": 1,
+    "t": "cup (3 ounces) finely grated Parmesan cheese, plus more for serving (optional)"
+   },
+   {
+    "q": 0.25,
+    "t": "cup finely chopped fresh parsley"
+   },
+   {
+    "q": 2,
+    "t": "cups (8 ounces) shredded part-skim mozzarella cheese"
+   },
+   {
+    "q": null,
+    "t": "Freshly ground black pepper"
+   },
+   {
+    "q": 3,
+    "t": "cups Basil Pomodoro Sauce or store-bought marinara sauce"
+   }
+  ],
+  "nut": {
+   "cal": "322",
+   "carb": "33",
+   "fat": "12.5",
+   "pro": "23"
+  },
+  "servings": 9,
+  "steps": [
+   "Preheat the oven to 375°F.",
+   "Bring a large pot of salted water to a boil. Cook the shells, stirring occasionally to prevent sticking, until al dente, about 3 minutes less than the package instructions. Drain well, run under cold water to stop the cooking, and drain again.",
+   "Make the filling: In a large bowl, lightly whisk the eggs. Stir in the ricotta, spinach, Parmesan, parsley, and 1 1/2 cups of the mozzarella. Season with 1/4 tsp salt and pepper to taste. Transfer the filling to a large resealable plastic bag.",
+   "Assemble: Spread 1 1/2 cups of the marinara sauce in a 9 x 13-inch baking dish. Snip off a corner of the plastic bag and squeeze the filling into the shells, arranging them over the sauce in a single layer as you go. Top with the remaining sauce and mozzarella. Cover the pan tightly with foil.",
+   "Serve now: Bake until heated through and bubbling on the edges, 35 to 40 minutes. Uncover and continue baking until any liquid around the edges of the pan dries up, 10 to 15 minutes more. Let stand 10 minutes before serving, with more grated Parmesan on top if you like.",
+   "Refrigerate and serve later: Before baking, the dish can be prepared up to 5 days ahead and refrigerated. Bake from the fridge, covered, at 375°F for 40 to 45 minutes, until heated through.",
+   "Freeze and serve later: Before baking, assemble in a freezer-to-ovenproof baking dish, cover tightly, and freeze for up to 3 months. Bake from frozen (no need to thaw) at 375°F, covered, until heated through in the center and bubbling on the edges, about 1 hour 15 minutes. Uncover and bake until any liquid on the edges dries up, 15 to 20 minutes more.",
+   "Tip: To make half, bake half in a 9 x 9-inch dish and freeze the other half for another night. Serve with a big green salad."
+  ],
+  "storage": "Fridge, up to 5 days (baked or unbaked). Freezer, up to 3 months.",
+  "tags": [
+   "vegetarian",
+   "freezer friendly"
+  ],
+  "title": "Baked Spinach Stuffed Shells",
+  "ts": 1793451000000
+ },
+ {
+  "id": "r1793450400000",
+  "img": "img/roasted-veggie-and-barley-buddha-bowls.jpg",
+  "ing": [
+   {
+    "q": null,
+    "t": "Olive oil spray"
+   },
+   {
+    "q": 4,
+    "t": "cups cauliflower florets, cut into bite-size pieces"
+   },
+   {
+    "q": 4,
+    "t": "cups broccoli florets, cut into bite-size pieces"
+   },
+   {
+    "q": 6,
+    "t": "long skinny carrots, cut crosswise into 3/4-inch pieces"
+   },
+   {
+    "q": 1,
+    "t": "pound mini rainbow peppers, cut into 1 1/2-inch pieces"
+   },
+   {
+    "q": null,
+    "t": "Kosher salt"
+   },
+   {
+    "q": null,
+    "t": "Freshly ground black pepper"
+   },
+   {
+    "q": 2.3333,
+    "t": "tbsp olive oil"
+   },
+   {
+    "q": 1,
+    "t": "cup pearled barley"
+   },
+   {
+    "q": 3,
+    "t": "cups low-sodium chicken or vegetable broth"
+   },
+   {
+    "q": null,
+    "t": "Juice of 1/2 lemon"
+   },
+   {
+    "q": 2,
+    "t": "scallions, white parts only"
+   },
+   {
+    "q": 1,
+    "t": "(15-ounce) can chickpeas, drained and rinsed"
+   },
+   {
+    "q": 0.25,
+    "t": "cup 2%-fat plain Greek yogurt"
+   },
+   {
+    "q": 0.25,
+    "t": "tsp kosher salt"
+   },
+   {
+    "q": null,
+    "t": "Juice of 1/2 lemon, for the dressing"
+   },
+   {
+    "q": 2,
+    "t": "tbsp thinly sliced scallion greens"
+   },
+   {
+    "q": 10,
+    "t": "large fresh basil leaves"
+   },
+   {
+    "q": 2,
+    "t": "tbsp chickpeas (reserved from can)"
+   }
+  ],
+  "nut": {
+   "cal": "537",
+   "carb": "92",
+   "fat": "12.5",
+   "pro": "21"
+  },
+  "servings": 4,
+  "steps": [
+   "Preheat the oven to 400°F. Spray two large sheet pans with oil.",
+   "Spread the cauliflower and broccoli in an even layer on one pan and the carrots and peppers on the other. Season all the veggies with 3/4 tsp salt and pepper to taste. Drizzle each pan with 1 tbsp olive oil and toss to coat evenly.",
+   "Roast the broccoli and cauliflower for about 10 minutes, then add the peppers and carrots to the oven. Roast, tossing halfway through, until all the veggies are browned on the edges and crisp-tender, about 20 minutes more.",
+   "Meanwhile, combine the barley and broth in a medium pot. Bring to a boil over high heat, then reduce the heat to low to simmer. Cover and cook until the barley has tripled in volume and is soft yet chewy, about 25 minutes. (If the barley is cooked but there's still liquid left, cover the pot and let it sit for 10 minutes.) Add the lemon juice, scallion whites, 1/4 tsp salt, and pepper to taste and gently mix. Fluff with a fork.",
+   "Make the dressing: In a small blender or food processor, combine the yogurt, salt, pepper, lemon juice, scallion greens, basil, and the reserved chickpeas. Blend until smooth. Add water, 1 tablespoon at a time, to thin the dressing to a pourable consistency.",
+   "Serve now: Divide the barley among 4 bowls (3/4 cup each). Top each with one-fourth of the veggies, one-fourth of the chickpeas, and about 2 tablespoons of the dressing.",
+   "Meal prep: Let the barley cool, then divide among 4 airtight containers. Top each with one-fourth of the veggies and one-fourth of the chickpeas. Divide the dressing (2 tablespoons each) among 4 small containers."
+  ],
+  "storage": "Fridge, up to 4 days",
+  "tags": [
+   "vegetarian",
+   "meal prep"
+  ],
+  "title": "Roasted Veggie and Barley Buddha Bowls",
+  "ts": 1793450400000
+ },
+ {
+  "id": "r1793449800000",
+  "img": "img/fiesta-quinoa-salad.jpg",
+  "ing": [
+   {
+    "q": 1,
+    "t": "cup red or tri-color quinoa, rinsed well"
+   },
+   {
+    "q": 1.6667,
+    "t": "cups reduced-sodium vegetable or chicken broth"
+   },
+   {
+    "q": 5,
+    "t": "tbsp fresh lime juice"
+   },
+   {
+    "q": 1,
+    "t": "tbsp extra-virgin olive oil"
+   },
+   {
+    "q": 0.25,
+    "t": "tsp kosher salt"
+   },
+   {
+    "q": null,
+    "t": "Freshly ground black pepper"
+   },
+   {
+    "q": 0.5,
+    "t": "medium red onion, chopped"
+   },
+   {
+    "q": 1,
+    "t": "fresh jalapeño pepper, seeds and membranes removed, chopped"
+   },
+   {
+    "q": 1,
+    "t": "cup cooked corn, from fresh or frozen"
+   },
+   {
+    "q": 0.75,
+    "t": "cup canned black beans, rinsed and drained"
+   },
+   {
+    "q": 2,
+    "t": "small vine tomatoes, seeded and diced"
+   },
+   {
+    "q": 0.25,
+    "t": "cup chopped fresh cilantro"
+   }
+  ],
+  "nut": {
+   "cal": "291",
+   "carb": "49",
+   "fat": "6.5",
+   "pro": "11"
+  },
+  "servings": 4,
+  "steps": [
+   "Quinoa on the stove: In a medium pot over high heat, combine the quinoa and broth and bring to a boil. Reduce the heat to medium-low, cover, and cook until the broth is completely absorbed, 20 to 24 minutes. Fluff with a fork and set aside to cool.",
+   "Quinoa in an Instant Pot instead: Place the quinoa and 1 1/2 cups of the broth into an Instant Pot (or any electric pressure cooker). Seal and cook on high for 2 minutes. Natural release, then open when the pressure subsides, about 10 minutes. Fluff with a fork and set aside to cool.",
+   "In a large mixing bowl, combine the lime juice, oil, salt, and black pepper to taste. Mix in the cooked quinoa, onion, jalapeño, corn, black beans, tomatoes, and cilantro. Divide among 4 airtight containers or jars.",
+   "Tips: Use broth instead of water, and use less liquid than the package directions suggest, since too much water makes quinoa mushy. For variations, add diced avocado just before serving, or toss in diced mango for a little sweetness."
+  ],
+  "storage": "Fridge, up to 5 days",
+  "tags": [
+   "vegetarian",
+   "quick",
+   "meal prep"
+  ],
+  "title": "Fiesta Quinoa Salad",
+  "ts": 1793449800000
+ },
+ {
+  "id": "r1793449200000",
+  "img": "img/cauliflower-tabbouleh-bowls-with-chickpeas-and-hum.jpg",
+  "ing": [
+   {
+    "q": 1,
+    "t": "pound cauliflower florets"
+   },
+   {
+    "q": 1,
+    "t": "cup diced cucumber, peeled and seeded"
+   },
+   {
+    "q": 2,
+    "t": "tbsp finely diced red onion"
+   },
+   {
+    "q": 0.25,
+    "t": "cup finely chopped fresh parsley"
+   },
+   {
+    "q": 1.5,
+    "t": "tbsp chopped fresh mint leaves"
+   },
+   {
+    "q": 0.5,
+    "t": "cup diced tomato"
+   },
+   {
+    "q": 0.5,
+    "t": "tbsp extra-virgin olive oil"
+   },
+   {
+    "q": 2,
+    "t": "tbsp fresh lemon juice"
+   },
+   {
+    "q": 4,
+    "t": "tsp red wine vinegar"
+   },
+   {
+    "q": 0.5,
+    "t": "tsp kosher salt"
+   },
+   {
+    "q": 2,
+    "t": "(15-ounce) cans chickpeas, rinsed and drained"
+   },
+   {
+    "q": 0.5,
+    "t": "cup store-bought hummus"
+   }
+  ],
+  "nut": {
+   "cal": "406",
+   "carb": "64",
+   "fat": "10",
+   "pro": "19"
+  },
+  "servings": 4,
+  "steps": [
+   "Rice the cauliflower: Pulse half of the cauliflower in a food processor until it has the texture of rice. Don't overprocess or it will get mushy. Set aside and repeat with the remaining cauliflower. (Makes 4 cups.)",
+   "Make the tabbouleh: In a large bowl, toss the riced cauliflower with the cucumber, onion, parsley, mint, tomato, olive oil, lemon juice, vinegar and salt. Cover and refrigerate until chilled.",
+   "Make the bowls: Divide the cauliflower tabbouleh, chickpeas and hummus among 4 bowls or airtight containers. You can assemble them separately and combine on the fly, or use meal prep containers with 3 compartments.",
+   "Tip: For the best taste and quality, make the cauliflower rice from scratch rather than using packaged, since you're eating it raw."
+  ],
+  "storage": "Fridge, up to 4 days",
+  "tags": [
+   "vegetarian",
+   "quick",
+   "meal prep"
+  ],
+  "title": "Cauliflower Tabbouleh Bowls with Chickpeas and Hummus",
+  "ts": 1793449200000
+ },
+ {
+  "id": "r1793448000000",
+  "img": "img/freezer-chicken-black-bean-burritos.jpg",
+  "ing": [
+   {
+    "q": 1,
+    "t": "cup canned reduced-sodium black beans, rinsed and drained"
+   },
+   {
+    "q": 1,
+    "t": "(10-ounce) can diced tomatoes with mild green chilies"
+   },
+   {
+    "q": 1,
+    "t": "pound skinless boneless chicken breast"
+   },
+   {
+    "q": 0.5,
+    "t": "tsp kosher salt"
+   },
+   {
+    "q": 0.75,
+    "t": "tsp ground cumin"
+   },
+   {
+    "q": 0.5,
+    "t": "tsp garlic powder"
+   },
+   {
+    "q": 0.25,
+    "t": "tsp cayenne pepper"
+   },
+   {
+    "q": 1.25,
+    "t": "cups jarred mild or spicy chunky salsa"
+   },
+   {
+    "q": 1.25,
+    "t": "cups cooked brown rice"
+   },
+   {
+    "q": 0.25,
+    "t": "cup chopped fresh cilantro"
+   },
+   {
+    "q": 10,
+    "t": "(8-inch) low-carb flour tortillas"
+   },
+   {
+    "q": 1.25,
+    "t": "cups shredded cheddar or pepper Jack cheese"
+   },
+   {
+    "q": null,
+    "t": "Cooking spray"
+   },
+   {
+    "q": null,
+    "t": "Hot sauce, salsa, guacamole, and/or sour cream, for serving (optional)"
+   }
+  ],
+  "nut": {
+   "cal": "225",
+   "carb": "29",
+   "fat": "8",
+   "pro": "20"
+  },
+  "servings": 10,
+  "steps": [
+   "Make the filling: In a slow cooker, combine the black beans and the diced tomatoes with green chilies.",
+   "Toss the chicken with the salt, cumin, garlic powder and cayenne. Place it over the beans and top with the salsa.",
+   "Cover and cook on low for about 4 hours, until the chicken is tender.",
+   "Shred the chicken right in the slow cooker and mix well with the sauce. Pour the mixture into a large colander to drain (you don't want any liquid), return it to the cooker, and mix in the rice and cilantro.",
+   "Warm the tortillas: char both sides on a hot griddle or over an open flame. Keep them warm under a towel if eating right away.",
+   "Assemble: On a clean surface, scoop 1/2 cup of the filling onto the center of each tortilla and top with 2 tablespoons cheese. Roll from the bottom up, fold the left and right edges in, and keep rolling into a tight cylinder. Repeat with the rest.",
+   "Serve now: Heat a skillet over medium heat and spray with oil. Cook the burritos seam side down, covered, about 3 minutes per side, until golden brown. Serve with hot sauce, salsa and other toppings.",
+   "To freeze: Place each burrito vertically on a piece of foil, fold the sides over and roll it up. Transfer to a labeled freezer-safe bag.",
+   "Reheat, oven (best results): Thaw overnight in the fridge, or bake straight from the freezer. Preheat the oven to 425°F. Bake the foil-wrapped burritos on a baking sheet, turning halfway, for about 20 minutes if thawed or about 45 minutes from frozen. Remove the foil and bake about 5 minutes more, until browned. Let cool 2 minutes before serving.",
+   "Reheat, microwave (least favorite results): Remove a burrito from the foil, place on a microwave-safe dish, cover with a paper towel and microwave 1 minute. Flip, then cook 1 to 1 1/2 minutes more. Let cool 2 minutes before serving."
+  ],
+  "storage": "Fridge, up to 4 days. Freezer, up to 3 months.",
+  "tags": [
+   "freezer friendly",
+   "chicken",
+   "slow cooker"
+  ],
+  "title": "Freezer Chicken Black Bean Burritos",
+  "ts": 1793448000000
+ },
+ {
   "id": "r_pbj_oatmeal_cookies",
   "title": "PB+J Healthy Oatmeal Cookies",
   "servings": 4,
