@@ -22,7 +22,7 @@ var pd={};pid.forEach(function(id){if(pd[id])return;pd[id]=1;var ta=a.ps[id]||0,
 if(pickSet(a.plan.indexOf(id)>-1,b.plan.indexOf(id)>-1,ta,tb)&&o.R.some(function(r){return r.id===id}))o.plan.push(id)});
 var sk=Object.keys(a.shop).concat(Object.keys(b.shop),Object.keys(a.ss),Object.keys(b.ss)),done={};
 sk.forEach(function(k){if(done[k])return;done[k]=1;var ta=a.ss[k]||0,tb=b.ss[k]||0;if(ta||tb)o.ss[k]=Math.max(ta,tb);if(pickSet(!!a.shop[k],!!b.shop[k],ta,tb))o.shop[k]=true});return o}
-function apply(m){S=m;shop=S.shop;snap=take();save0();if(view!=="new"&&view!=="edit")draw()}
+function apply(m){S=m;shop=S.shop;snap=take();save0();kick();if(view!=="new"&&view!=="edit")draw()}
 function sync(){if(!code)return Promise.resolve();if(syncing){again=true;return Promise.resolve()}syncing=true;pulled=false;clearTimeout(syncT);if(view==="sync")draw();
 var u="/api/sync?code="+code;
 return fetch(u+"&t="+Date.now(),{cache:"no-store"}).then(function(r){if(r.status===404){if(joining!==null){var old=joining;joining=null;setCode(old);syncMsg="No device is using that code yet. Check the code and try again.";throw 1}return null}joining=null;if(!r.ok)throw 0;return r.json()}).then(function(remote){
@@ -31,7 +31,18 @@ if(out!==mine){pulled=true;apply(m)}
 if(remote&&out===canon(remote))return;
 return fetch(u,{method:"PUT",headers:{"content-type":"application/json"},body:out}).then(function(r){if(!r.ok)throw 0})
 }).then(function(){lastOk=Date.now();syncMsg=""},function(e){if(e===1)return;syncMsg="Couldn’t reach the sync server. Your changes are saved here and will sync when you’re back online."}).then(function(){syncing=false;if(view==="sync")draw();if(again){again=false;sync()}})}
-var save0=save;save=function(){stamp();save0();if(code){clearTimeout(syncT);syncT=setTimeout(sync,800)}};
+// Photos are uploaded once and recipes keep a short link, so device storage doesn't fill up.
+var offloading=false,offT=null,offFail=0;
+function hasData(){return S.R.some(function(r){return r.img&&r.img.indexOf("data:")===0})}
+function dataBlob(u){var b=atob(u.split(",")[1]),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return new Blob([a],{type:"image/jpeg"})}
+function jpegBlob(u){if(/^data:image\/jpe?g/.test(u))return Promise.resolve(dataBlob(u));return new Promise(function(res,rej){var im=new Image();im.onload=function(){var k=Math.min(1,720/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);res(dataBlob(c.toDataURL("image/jpeg",.72)))};im.onerror=rej;im.src=u})}
+function offload(){if(offloading||!hasData()||Date.now()-offFail<60000)return;offloading=true;var done=0;
+S.R.filter(function(r){return r.img&&r.img.indexOf("data:")===0}).reduce(function(p,r){var src=r.img;return p.then(function(){return jpegBlob(src)}).then(function(b){return fetch("/api/photo",{method:"POST",body:b})}).then(function(x){if(!x.ok)throw 0;return x.json()}).then(function(j){var c=rec(r.id);if(c&&c.img===src){c.img=j.url;done++}},function(){offFail=Date.now()})},Promise.resolve())
+.then(function(){offloading=false;if(done){save();if(view!=="new"&&view!=="edit")draw()}else save0()})}
+function kick(){clearTimeout(offT);offT=setTimeout(offload,1000)}
+// Called by save() when device storage is full: upload photos, then save again.
+window.onSaveFull=function(){if(!hasData()||Date.now()-offFail<60000)return false;offload();return true};
+var save0=save;save=function(){stamp();save0();kick();if(code){clearTimeout(syncT);syncT=setTimeout(sync,800)}};
 function newCode(){var a="abcdefghjkmnpqrstuvwxyz23456789",s="";var v=new Uint32Array(12);crypto.getRandomValues(v);for(var i=0;i<12;i++)s+=a[v[i]%a.length];return s}
 function setCode(c){code=c;try{if(c)localStorage.setItem(SK,c);else localStorage.removeItem(SK)}catch(e){}}
 function syncOn(){setCode(newCode());draw();sync()}
@@ -48,7 +59,7 @@ var st=syncing?'Syncing…':syncMsg?syncMsg:lastOk?'Synced at '+new Date(lastOk)
 var cnt='On this device: '+S.R.length+' recipes, '+S.plan.length+' in this week, '+Object.keys(shop).filter(function(k){return shop[k]}).length+' checked off.';
 return h+'<p>Sync is on for this device. Your sync code is <b>'+esc(code)+'</b>. All your devices should show this same code.</p><p><button class="btn" onclick="syncNow()"'+(syncing?" disabled":"")+'>'+(syncing?"Syncing…":"Sync now")+'</button></p><p role="status"'+(syncMsg?' style="color:#b3261e"':' class="mute"')+'>'+esc(st)+'</p><p class="mute">'+cnt+'</p>'+'<p>To add another device, open this link on it:</p><p><button class="btn" onclick="shareLink()">Share sync link</button></p><p class="mute">Anyone with this link or code can see and change your Recipe Box, so only share it with your own devices or family.</p><p><button class="ghost" onclick="syncOff()">Stop syncing on this device</button></p>'+joinBox("Different code on your other device?")}
 function fromHash(){var m=location.hash.match(/sync=([a-z0-9]+)/i);if(!m)return false;history.replaceState(null,"",location.pathname+location.search);if(m[1].toLowerCase()===code)return false;setCode(m[1].toLowerCase());view="sync";draw();return true}
-(function(){fromHash();snap=take();if(code)sync();
+(function(){fromHash();snap=take();if(code)sync();kick();
 window.addEventListener("hashchange",function(){if(fromHash())sync()});
 document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")sync()});
 setInterval(function(){if(document.visibilityState==="visible")sync()},30000)})();
